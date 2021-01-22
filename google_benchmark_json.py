@@ -3,10 +3,9 @@ import json
 import re
 import pprint
 import itertools
+import pandas as pd
 from operator import attrgetter
 from collections import OrderedDict
-
-SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 class GoogleBenchmarkRun:
     @classmethod
@@ -61,12 +60,13 @@ class GoogleBenchmarkRun:
     def context(self):
         return {
             **self.json["context"],
-            "compiler_version": self.compiler_version,
             "path": self.path,
             "base_version": self.base_version,
             "commits_past_version": self.commits_past_version,
             "host": self.host,
             "compiler": self.compiler,
+            "compiler_version": self.compiler_version,
+            "compiler_plus_version": self.compiler_plus_version,
             "variant": self.variant,
         }
 
@@ -89,6 +89,9 @@ class GoogleBenchmarkRun:
                 result += f"  - {benchmark.implementation}: {benchmark.benchmark_json['best_bytes_per_sec']}\n"
         return result
 
+    def dataframe(self):
+        return pd.DataFrame([benchmark.to_record() for benchmark in self.benchmarks])
+
 class GoogleBenchmarkResult:
     def __init__(self, run, benchmark_json):
         self.run = run
@@ -106,6 +109,14 @@ class GoogleBenchmarkResult:
     def throughput(self):
         return self.benchmark_json["best_bytes_per_sec"]
 
+    def to_record(self):
+        return {
+            **self.run.context,
+            "benchmark_name": self.name,
+            "json_implementation": self.implementation,
+            **self.benchmark_json
+        }
+
     def __str__(self):
         return f"{self.implementation()} - {self.throughput}"
 
@@ -116,6 +127,3 @@ def list_runs(path):
         for file in files
         if os.path.splitext(file)[1] == ".json"
     ]
-
-for run in list_runs(SCRIPT_DIR):
-    print(str(run))
