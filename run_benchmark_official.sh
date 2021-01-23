@@ -1,5 +1,3 @@
-set -x
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 function bench_results() {
@@ -8,6 +6,13 @@ function bench_results() {
     base_version=$3
     commit=$4
     variant=$5
+
+    # Update the remote and figure out # of commits past version
+    cd $SCRIPT_DIR/simdjson
+    git remote update
+
+    # Set up the home for the JSON file
+    commits_past_version=$(git rev-list --count --first-parent $base_version...$commit)
 
     case $compiler in
         clang6)
@@ -49,9 +54,19 @@ function bench_results() {
     case $variant in
         default)
             suffix=""
+            cmake_flags=""
             ;;
         native)
             suffix="-native"
+            cmake_flags="-DCMAKE_CXX_FLAGS=-march=native"
+            ;;
+        fallback)
+            suffix="-fallback"
+            cmake_flags="-DSIMDJSON_IMPLEMENTATION=fallback"
+            ;;
+        westmere)
+            suffix="-westmere"
+            cmake_flags="-DSIMDJSON_IMPLEMENTATION=westmere"
             ;;
         *)
             echo "Unknown variant $variant"
@@ -59,32 +74,42 @@ function bench_results() {
             ;;
     esac
 
-    # Update the remote and figure out # of commits past version
-    cd $SCRIPT_DIR/simdjson
-    git remote update
-
-    # Set up the home for the JSON file
-    commits_past_version=$(git rev-list --count --first-parent $base_version...$commit)
     base_dir=$SCRIPT_DIR/$base_version
     if [ "$commits_past_version" -ne "0" ]; then
         base_dir=$base_dir/$commits_past_version
     fi
     mkdir -p $base_dir
-    json_file=$base_dir/$host-$compiler$suffix.json
+    json_file_base=$base_dir/$host-$compiler$suffix
+    json_file=$json_file_base.json
 
-    # Build
-    git reset --hard $commit
-    mkdir -p build
-    cd build
-    cmake -DCMAKE_CXX_FLAGS=-march=native ..
-    make bench_ondemand
-
-    # Run the benchmark
-    benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json
+    echo run_benchmark $commit $json_file $cmake_flags \> $json_file_base.out 2\>\&1
+    run_benchmark $commit $json_file $cmake_flags > $json_file_base.out 2>&1
 
     echo
     echo $json_file
     echo
+}
+
+function run_benchmark() {
+    commit=$1
+    json_file=$2
+    cmake_flags=$3
+
+    echo "run_benchmark: $commit $json_file $cmake_flags"
+
+    # Build
+    echo git reset --hard $commit
+    git reset --hard $commit
+    mkdir -p build
+    cd build
+    echo cmake $cmake_flags ..
+    cmake $cmake_flags ..
+    echo make bench_ondemand
+    make bench_ondemand
+
+    # Run the benchmark
+    echo benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json
+    benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json
 }
 
 host=$1
