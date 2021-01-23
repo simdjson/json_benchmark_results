@@ -7,11 +7,8 @@ function bench_results() {
     commit=$4
     variant=$5
 
-    # Update the remote and figure out # of commits past version
+    # Figure out # of commits past version
     cd $SCRIPT_DIR/simdjson
-    git remote update
-
-    # Set up the home for the JSON file
     commits_past_version=$(git rev-list --count --first-parent $base_version...$commit)
 
     case $compiler in
@@ -117,6 +114,9 @@ base_version=$2
 commits=${3:-"$base_version"}
 compilers=${4:-"clang11 gcc10.2"}
 variants=${5:-default}
+
+cd $SCRIPT_DIR/simdjson
+git remote update
 
 for compiler in $compilers; do
     for variant in $variants; do
