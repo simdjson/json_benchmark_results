@@ -1,0 +1,94 @@
+run_benchmark: v0.8.0~35 /home/jkeiser/simdjson_benchmark_results/v0.7.0/3/skylake-clang11.json 
+git reset --hard v0.8.0~35
+HEAD is now at 91b07ba0 Allow build without download (#1334)
+cmake ..
+-- The simdjson repository appears to be standalone.
+-- By default, we attempt to build everything.
+-- Building a dynamic library.
+-- Library output directory: /home/jkeiser/simdjson_benchmark_results/simdjson/build
+-- Importing google_benchmarks (google/benchmark@8982e1e)
+-- Failed to find LLVM FileCheck
+-- git Version: v0.2.1-91b07ba0
+-- Version: 0.2.1
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES -- failed to compile
+-- Performing Test HAVE_STD_REGEX -- success
+-- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+-- Performing Test HAVE_POSIX_REGEX -- success
+-- Performing Test HAVE_STEADY_CLOCK -- success
+-- Importing cjson (DaveGamble/cJSON@c69134d)
+-- Importing fastjson (mikeando/fastjson@485f994)
+-- Importing gason (vivkin/gason@7aee524)
+-- Importing jsmn (zserge/jsmn@18e9fe4)
+-- Importing json (nlohmann/json@v3.9.1)
+-- Importing json11 (dropbox/json11@ec4e452)
+-- Importing rapidjson (Tencent/rapidjson@b32cd94)
+-- Importing sajson (chadaustin/sajson@2dcfd35)
+-- Importing ujson4c (esnme/ujson4c@e14f3fd)
+-- Importing yyjson (ibireme/yyjson@aa33ec5)
+-- Importing cxxopts (jarro2783/cxxopts@794c975)
+-- cxxopts version 2.2.0
+-- We have cxxopts as a dependency and we are buiding the tools (e.g., json2json).
+-- Git is available and it is recent. We are enabling checkperf targets.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jkeiser/simdjson_benchmark_results/simdjson/build
+make bench_ondemand
+make[1]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+make[2]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+make[3]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+make[3]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+[ 80%] Built target benchmark
+make[3]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+make[3]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+[ 80%] Built target generated-data
+make[3]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+Scanning dependencies of target simdjson
+make[3]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+make[3]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+[ 80%] Building CXX object src/CMakeFiles/simdjson.dir/simdjson.cpp.o
+[ 90%] Linking CXX shared library ../libsimdjson.so
+make[3]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+[ 90%] Built target simdjson
+make[3]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+Scanning dependencies of target bench_ondemand
+make[3]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+make[3]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+[100%] Building CXX object benchmark/CMakeFiles/bench_ondemand.dir/bench_ondemand.cpp.o
+[100%] Linking CXX executable bench_ondemand
+make[3]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+[100%] Built target bench_ondemand
+make[2]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+make[1]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build'
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/3/skylake-clang11.json --benchmark_out_format=json
+2021-01-23 04:51:23
+Running benchmark/bench_ondemand
+Run on (4 X 3200 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 1024 KiB (x4)
+  L3 Unified 8448 KiB (x1)
+Load Average: 1.00, 1.00, 0.94
+***WARNING*** CPU scaling is enabled, the benchmark real time measurements may be noisy and will incur extra overhead.
+On Demand implementation: fallback
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations best_branch_miss best_bytes_per_sec best_cache_miss best_cache_ref best_cycles best_cycles_per_byte best_docs_per_sec best_frequency best_instructions best_instructions_per_byte best_instructions_per_cycle best_items_per_sec branch_miss      bytes bytes_per_second cache_miss  cache_ref     cycles cycles_per_byte docs_per_sec  frequency instructions instructions_per_byte instructions_per_cycle      items items_per_second
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PartialTweets<OnDemand>     1456713 ns      1456608 ns          480          32.689k           442.684M               4         4.619k     4.5545M              7.21203           700.987       3.19265G          10.8663M                    17.2067                     2.38584           70.0987k    33.9829k   631.515k       413.467M/s    4.11042   4.65868k   4.59961M         7.28345    686.527/s 3.15775G/s     10.8663M               17.2067                2.36244        100       68.6527k/s [best: throughput=  0.44 GB/s doc_throughput=   700 docs/s instructions=    10866312 cycles=     4554505 branch_miss=   32689 cache_miss=       4 cache_ref=      4619 items=       100 avg_time=   1441846 ns]
+PartialTweets<Dom>           327327 ns       327321 ns         2138           3.384k            2.0459G               1        30.888k    985.812k              1.56103          3.23967k       3.19371G           2.9875M                    4.73069                      3.0305           323.967k    3.48058k   631.515k       1.79684G/s    1.00702     31.06k   991.359k         1.56981   3.05511k/s 3.02871G/s      2.9875M               4.73069                3.01354        100       305.511k/s [best: throughput=  2.05 GB/s doc_throughput=  3239 docs/s instructions=     2987503 cycles=      985812 branch_miss=    3384 cache_miss=       1 cache_ref=     30888 items=       100 avg_time=    310717 ns]
+Creating a source file spanning 44921 KB 
+LargeRandom<Dom>          100735512 ns    100725786 ns            7         962.898k           457.179M        6.75132M       6.89586M    320.829M              6.97472           9.93894        3.1887G          1036.74M                    22.5384                     3.23144           9.93894M    958.914k   45.9988M       435.518M/s   6.79923M   6.89588M   321.058M          6.9797    9.92794/s 3.18744G/s     1036.74M               22.5384                3.22913      1000k       9.92794M/s [best: throughput=  0.46 GB/s doc_throughput=     9 docs/s instructions=  1036738085 cycles=   320828805 branch_miss=  962898 cache_miss= 6751317 cache_ref=   6895858 items=   1000000 avg_time= 100707155 ns]
+LargeRandomSum<Dom>       100987320 ns    100986392 ns            7         954.642k           456.557M        6.42734M       6.51964M    321.268M              6.98426           9.92541       3.18871G          1025.74M                    22.2992                     3.19278           9.92541M    956.742k   45.9988M       434.394M/s   6.43623M    6.5196M   321.911M         6.99825    9.90232/s 3.18767G/s     1025.74M               22.2992                 3.1864      1000k       9.90232M/s [best: throughput=  0.46 GB/s doc_throughput=     9 docs/s instructions=  1025738086 cycles=   321267589 branch_miss=  954642 cache_miss= 6427345 cache_ref=   6519635 items=   1000000 avg_time= 100959057 ns]
+LargeRandom<OnDemand>     117129089 ns    117125867 ns            6          1.3048M           393.513M         3.5175M       3.57415M    372.746M               8.1034           8.55486       3.18879G          1.16598G                     25.348                     3.12807           8.55486M    1.30739M   45.9988M       374.536M/s   3.48559M   3.57405M   373.411M         8.11785    8.53782/s 3.18812G/s     1.16598G                25.348                 3.1225      1000k       8.53782M/s [best: throughput=  0.39 GB/s doc_throughput=     8 docs/s instructions=  1165976270 cycles=   372746490 branch_miss= 1304804 cache_miss= 3517504 cache_ref=   3574150 items=   1000000 avg_time= 117099951 ns]
+LargeRandomSum<OnDemand>  117483263 ns    117474066 ns            6         1.34486M           392.466M        3.12743M        3.1975M    373.754M              8.12531           8.53209       3.18891G          1.17298G                    25.5002                     3.13836           8.53209M    1.34478M   45.9988M       373.426M/s   3.13882M   3.19751M   374.509M         8.14171    8.51252/s 3.18801G/s     1.17298G               25.5002                3.13204      1000k       8.51252M/s [best: throughput=  0.39 GB/s doc_throughput=     8 docs/s instructions=  1172975758 cycles=   373754387 branch_miss= 1344865 cache_miss= 3127430 cache_ref=   3197504 items=   1000000 avg_time= 117454849 ns]
+Creating a source file spanning 134087 KB 
+Kostya<Dom>               106047152 ns    106046165 ns            7         1017.78k           1.29714G        10.1327M       10.3182M    337.531M              2.45826           9.44715       3.18871G          984.675M                    7.17144                     2.91728           4.95303M    1017.95k   137.305M       1.20585G/s   10.2107M   10.3182M   338.027M         2.46187    9.42986/s 3.18755G/s     984.675M               7.17144                  2.913   524.288k       4.94396M/s [best: throughput=  1.30 GB/s doc_throughput=     9 docs/s instructions=   984674874 cycles=   337531482 branch_miss= 1017778 cache_miss=10132717 cache_ref=  10318155 items=    524288 avg_time= 106016570 ns]
+KostyaSum<Dom>            105378516 ns    105375240 ns            7         1017.51k            1.3053G        9.96232M       10.1208M    335.429M              2.44295           9.50656       3.18878G          977.859M                     7.1218                     2.91525           4.98418M    1017.12k   137.305M       1.21352G/s   10.0189M   10.1208M   335.898M         2.44636     9.4899/s 3.18763G/s     977.859M                7.1218                2.91118   524.288k       4.97544M/s [best: throughput=  1.31 GB/s doc_throughput=     9 docs/s instructions=   977859128 cycles=   335429388 branch_miss= 1017511 cache_miss= 9962325 cache_ref=  10120795 items=    524288 avg_time= 105348093 ns]
+Kostya<OnDemand>          220595639 ns    220589537 ns            3         685.711k           623.246M        6.42968M         6.472M    702.729M              5.11802           4.53914       3.18978G           2.1695G                    15.8006                     3.08725           2.37981M    703.927k   137.305M        593.61M/s   6.43062M   6.47214M    703.49M         5.12355    4.53331/s 3.18913G/s      2.1695G               15.8006                3.08391   524.288k       2.37676M/s [best: throughput=  0.62 GB/s doc_throughput=     4 docs/s instructions=  2169501007 cycles=   702729339 branch_miss=  685711 cache_miss= 6429681 cache_ref=   6471998 items=    524288 avg_time= 220563624 ns]
+KostyaSum<OnDemand>       222996428 ns    222977747 ns            3         703.245k           617.571M        6.25302M       6.27347M    708.893M              5.16291            4.4978       3.18846G          2.17422G                     15.835                     3.06706           2.35814M    765.166k   137.305M       587.253M/s   6.23006M    6.2735M   711.067M         5.17874    4.48475/s 3.18896G/s     2.17422G                15.835                3.05769   524.288k        2.3513M/s [best: throughput=  0.62 GB/s doc_throughput=     4 docs/s instructions=  2174219450 cycles=   708893229 branch_miss=  703245 cache_miss= 6253018 cache_ref=   6273473 items=    524288 avg_time= 222963472 ns]
+DistinctUserID<Dom>          328152 ns       328149 ns         2134           3.731k           2.05812G               0        31.172k    979.868k              1.55161          3.25903k       3.19342G           2.9272M                    4.63521                     2.98735           374.788k    3.86956k   631.515k       1.79231G/s  0.0164011   31.4828k   987.802k         1.56418   3.04739k/s 3.01022G/s     2.92721M               4.63521                2.96335        115        350.45k/s [best: throughput=  2.06 GB/s doc_throughput=  3259 docs/s instructions=     2927205 cycles=      979868 branch_miss=    3731 cache_miss=       0 cache_ref=     31172 items=       115 avg_time=    309598 ns]
+On Demand implementation: fallback
+DistinctUserID<OnDemand>    1423435 ns      1423336 ns          492           33.08k           453.357M               0         2.294k    4.44742M              7.04246           717.888       3.19275G           10.498M                    16.6236                     2.36048           82.5572k    34.1822k   631.515k       423.132M/s   0.743902   2.46514k   4.48817M         7.10699    702.575/s 3.15328G/s      10.498M               16.6236                2.33904        115       80.7961k/s [best: throughput=  0.45 GB/s doc_throughput=   717 docs/s instructions=    10498028 cycles=     4447421 branch_miss=   33080 cache_miss=       0 cache_ref=      2294 items=       115 avg_time=   1406877 ns]
+FindTweet<Dom>               311270 ns       311267 ns         2248           3.206k            2.1813G               0        26.497k    924.555k              1.46403          3.45408k       3.19348G          2.83257M                    4.48536                     3.06371           3.45408k    3.39577k   631.515k       1.88952G/s   6.22776m   26.6054k   932.041k         1.47588   3.21267k/s 2.99434G/s     2.83257M               4.48536                 3.0391          1       3.21267k/s [best: throughput=  2.18 GB/s doc_throughput=  3454 docs/s instructions=     2832569 cycles=      924555 branch_miss=    3206 cache_miss=       0 cache_ref=     26497 items=         1 avg_time=    292125 ns]
+On Demand implementation: fallback
+FindTweet<OnDemand>         1365411 ns      1365300 ns          512          31.653k           473.075M               0          1.84k    4.26197M              6.74879           749.111       3.19269G          10.0846M                    15.9689                     2.36619            749.111    32.7633k   631.515k       441.119M/s    0.40625   1.92419k    4.3016M         6.81155     732.44/s 3.15066G/s     10.0846M               15.9689                2.34439          1         732.44/s [best: throughput=  0.47 GB/s doc_throughput=   749 docs/s instructions=    10084609 cycles=     4261965 branch_miss=   31653 cache_miss=       0 cache_ref=      1840 items=         1 avg_time=   1348454 ns]

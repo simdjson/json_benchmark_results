@@ -7,12 +7,25 @@ import pandas as pd
 from operator import attrgetter
 from collections import OrderedDict
 
+OLD_BENCHMARKS = {
+    "PartialTweets": "partial_tweets",
+    "LargeRandom": "large_random",
+    "Kostya": "kostya",
+    "FindTweet": "find_tweet",
+}
+
+OLD_IMPLEMENTATIONS = {
+    "OnDemand": "simdjson_ondemand",
+    "Dom": "simdjson_dom",
+    "OnDemandUnordered": "simdjson_ondemand_unordered"
+}
+
 class GoogleBenchmarkRun:
     @classmethod
     def from_path(cls, root, folder, file):
         # Split up the path (relative to root) and extract the version
         path_parts = [x for x in os.path.split(os.path.relpath(folder, root))]
-        if path_parts[0] == '.': path_parts = path_parts.pop(0)
+        if path_parts[0] == '.' or path_parts[0] == '': path_parts.pop(0)
         assert len(path_parts) <= 2
 
         #
@@ -52,6 +65,7 @@ class GoogleBenchmarkRun:
     @property
     def json(self):
         if not self.deserialized_json:
+            print(self.path)
             with open(self.path) as f:
                 self.deserialized_json = json.load(f)
         return self.deserialized_json
@@ -95,15 +109,17 @@ class GoogleBenchmarkRun:
 class GoogleBenchmarkResult:
     def __init__(self, run, benchmark_json):
         self.run = run
-        self.benchmark_json = benchmark_json        
+        self.benchmark_json = benchmark_json
 
     @property
     def name(self):
-        return re.search(r'^(.+)<([^>]+)>', self.benchmark_json["name"])[1]
+        result = re.search(r'^(.+)<([^>]+)>', self.benchmark_json["name"])[1]
+        return OLD_BENCHMARKS[result] if result in OLD_BENCHMARKS else result
 
     @property
     def implementation(self):
-        return re.search(r'^(.+)<([^>]+)>', self.benchmark_json["name"])[2]
+        result = re.search(r'^(.+)<([^>]+)>', self.benchmark_json["name"])[2]
+        return OLD_IMPLEMENTATIONS[result] if result in OLD_IMPLEMENTATIONS else result
     
     @property
     def throughput(self):

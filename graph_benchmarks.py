@@ -10,6 +10,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 #
 compilers = [
     "clang10",
+    "clang11",
     "gcc10.2",
 ]
 

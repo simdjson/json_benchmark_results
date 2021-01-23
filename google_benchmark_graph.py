@@ -5,7 +5,15 @@ import pandas as pd
 # Benchmarks: comment out ones we don't want to show
 #
 COMPILERS = {
+    "clang6": "Clang 6",
+    "clang7": "Clang 7",
+    "clang8": "Clang 8",
+    "clang9": "Clang 9",
     "clang10": "Clang 10",
+    "clang11": "Clang 11",
+    "gcc7": "g++ 7",
+    "gcc8": "g++ 8",
+    "gcc9": "g++ 9",
     "gcc10.2": "g++ 10.2",
 }
 
@@ -83,20 +91,21 @@ def graph_benchmarks(name, benchmarks, y, y_label, y_scale):
     )
     return fig
 
+def create_name(row):
+    result = f"{row['host']} {row['compiler_plus_version']}"
+    result += (f" - {row['variant']}" if row['variant'] else "")
+    result += f" ("
+    result += f"simdjson {row['base_version']}"
+    result += (f"+{row['commits_past_version']}" if row['commits_past_version'] > 0 else "")
+    result += f")"
+    return result
+
 def graph_grouped_benchmarks(benchmarks, y="best_bytes_per_sec", y_label="Throughput (GB/s)", y_scale=1000000000):
     benchmarks[y] = benchmarks[y].apply(lambda y: y/y_scale)
     benchmarks["benchmark_name"] = benchmarks["benchmark_name"].apply(lambda name: BENCHMARKS[name])
     benchmarks["compiler_plus_version"] = benchmarks["compiler_plus_version"].apply(lambda compiler: COMPILERS[compiler])
     benchmarks["json_implementation"] = benchmarks["json_implementation"].apply(lambda implementation: JSON_IMPLEMENTATIONS[implementation])
-    benchmarks["run"] = benchmarks.apply(lambda row:
-        f"{row['host']} {row['compiler_plus_version']}" +
-        (f" - {row['variant']}" if row['variant'] else "") +
-        f" (" +
-        f"simdjson {row['base_version']}" +
-        (f"+{row['commits_past_version']}" if row['commits_past_version'] > 0 else "") +
-        f")",
-        axis = 'columns'
-    )
+    benchmarks["run"] = benchmarks.apply(create_name, axis = 'columns')
     return [
         (path,graph_benchmarks(name, group, y, y_label, y_scale))
         for (name,path),group
