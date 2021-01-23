@@ -1,3 +1,8 @@
+# The simdjson repository used to build commits
+simdjson
+# Don't commit generated pngs for dev commits
+*/*/*.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
