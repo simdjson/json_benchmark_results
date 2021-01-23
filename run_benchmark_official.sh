@@ -10,6 +10,9 @@ function bench_results() {
         clang10)
             export CXX=clang++-10 CC=clang-10
             ;;
+        clang11)
+            export CXX=clang++-11 CC=clang-11
+            ;;
         gcc10.2)
             export CXX=g++-10 CC=gcc-10
             ;;
