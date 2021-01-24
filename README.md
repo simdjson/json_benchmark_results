@@ -25,7 +25,7 @@ The benchmark results encompass these scenarios:
 | top_tweet | Display tweet with the highest # retweets | Lazy Parsing | `{ "statuses": [ { "id": 1231, "user": { ... }, ... }, ... ], ... }` |
 | find_tweet | Find tweet with given ID | Stop Early | `{ "statuses": [ { "id": 1231, "user": { ... }, ... }, ... ], ... }` |
 
-### Benchmark Files
+### Repository Organization
 
 Each benchmark contains two main files: `<host>-<compiler>[-<variant>].json`, and `<host>-<compiler>[-<variant>].out`. The JSON file is the actual Google Benchmark results (unmodified), and the .out file is the output of cmake, make, etc. so that we can be sure we're running what we think we're running.
 
@@ -62,7 +62,7 @@ host=skylake
 ./run_benchmark_official.sh $host v0.7.0 "v0.8.0~1 v0.8.0~5 v0.8.0~10 v0.8.0~15 v0.8.0~20 v0.8.0~25 v0.8.0~30 v0.8.0~35" "" "default native"
 ```
 
-## Generating .pngs
+### Generating .pngs
 
 When all the new .out and .json files are in the directory, you can run graph_benchmarks.py to generate pngs. You will need several libraries first.
 
