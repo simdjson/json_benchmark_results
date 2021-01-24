@@ -119,7 +119,7 @@ function run_benchmark() {
 host=$1
 base_version=$2
 commits=${3:-"$base_version"}
-compilers=${4:-"clang11 gcc10.2"}
+compilers=${4:-clang11}
 variants=${5:-release}
 
 cd $SCRIPT_DIR/simdjson
