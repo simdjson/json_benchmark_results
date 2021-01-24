@@ -2,6 +2,8 @@
 
 Benchmarks results of real world scenarios for many JSON parsers, including iteration and use of the results.
 
+![Latest Benchark](v0.8.0/skylake-clang11.png)
+
 ## Rationale
 
 JSON parsers not only parse JSON, they also present APIs to *use* it. Once it's been parsed, you have to iterate over its arrays, look up values in objects, and ultimately extract strings, floating-point numbers, etc.
