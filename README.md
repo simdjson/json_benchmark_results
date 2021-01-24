@@ -1,14 +1,27 @@
-# Benchmarks
+# JSON Benchmarks
 
-Benchmark results (and graphing thereof) for simdjson
+Benchmarks results of real world scenarios for many JSON parsers, including iteration and use of the results.
 
-## Structure
+## Rationale
 
-### Versions and Commits
+JSON parsers not only parse JSON, they also present APIs to *use* it. Once it's been parsed, you have to iterate over its arrays, look up values in objects, and ultimately extract strings, floating-point numbers, etc.
 
-Each top-level directory (`v0.7.0`, `v0.8.0`, ...) represents a version of simdjson. Benchmark results directly underneath represent benchmarks against that version.
+JSON *benchmarks* typically only measure how long a parser takes to *read* a JSON file. Even for the many parsers that read JSON into a tree, some trees are faster than others, meaning you need to measure how long it takes to (for example) look up object fields.
 
-Subdirectories (`v0.7.0/3`, etc.) represent a development commit--commit to master *after* that version. `v0.7.0/3` is the change 3 commits after v0.7.0 was released. Only merges are counted.
+More importantly, there are JSON parsers that can't be evaluated without using the data! SAX parsers like those offered by [RapidJson](https://rapidjson.org/md_doc_sax.html) and [nlohmann_json](https://github.com/nlohmann/json#sax-interface) don't have to produce a tree at all, and may even stop early if you are finished with the document. Some parsers, like simdjson's On Demand, can even skip parsing unused values, saving a lot of time.
+
+## Benchmarks
+
+The benchmark results encompass these scenarios:
+
+| Benchmark | Scenario | Test Features | Example JSON | Document Features Tested |
+|---|---|---|---|---|
+| large_random     | Show all points | Read All Fields | `[ { "x": 0.1, "y": 0.2, "z": 0.3 } ]` | Floating-Point, Many Small Objects |
+| kostya           | Show all points | Skip One Field  | `[ { "x": 0.1, "y": 0.2, "z": 0.3, "text": "blah" } ]`| Many Small Objects, Floating-Point |
+| partial_tweets   | Show all tweets | Skip Most Fields | `{ "statuses": [ { "id": 1231, "user": { "id": 4522, "screen_name": ... }, "text": ... } ... ], ... }` | Few (~100) Large Objects, UTF-8, Escape Characters, Large Integers |
+| distinct_user_id | Show user IDs | Nesting, Skip Most Fields | `{ "statuses": [ { "user": { "id" ... }, "in_reply_to": { "user": { "id": 524 ... } ... } ... } ... ] ... }` | Few (~100) Large Objects, Deep Nesting, Large Integers |
+| top_tweet | Display tweet with the highest # retweets | Lazy Parsing | `{ "statuses": [ { "id": 1231, "user": { ... }, ... }, ... ], ... }` |
+| find_tweet | Find tweet with given ID | Stop Early | `{ "statuses": [ { "id": 1231, "user": { ... }, ... }, ... ], ... }` |
 
 ### Benchmark Files
 
