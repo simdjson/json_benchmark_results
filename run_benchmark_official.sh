@@ -1,4 +1,9 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SIMDJSON_DIR=$SCRIPT_DIR/simdjson
+if [ ! -d $SIMDJSON_DIR ]; then
+    cd $(dirname $SIMDJSON_DIR)
+    git clone https://github.com/simdjson/simdjson
+fi
 
 function bench_results() {
     host=$1
@@ -80,8 +85,8 @@ function bench_results() {
     json_file_base=$base_dir/$host-$compiler$suffix
     json_file=$json_file_base.json
 
-    echo run_benchmark $commit $json_file $cmake_flags \> $json_file_base.out 2\>\&1
-    run_benchmark $commit $json_file $cmake_flags > $json_file_base.out 2>&1
+    echo run_benchmark $commit $json_file "$cmake_flags" \> $json_file_base.out 2\>\&1
+    run_benchmark $commit $json_file "$cmake_flags" > $json_file_base.out 2>&1
 
     echo
     echo $json_file
@@ -100,8 +105,9 @@ function run_benchmark() {
     git reset --hard $commit
     mkdir -p build
     cd build
+    cmake_flags="$cmake_flags -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
     echo cmake $cmake_flags ..
-    cmake -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON $cmake_flags ..
+    cmake $cmake_flags ..
     echo make bench_ondemand
     make --no-print-directory bench_ondemand
 

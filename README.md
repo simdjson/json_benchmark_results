@@ -34,7 +34,6 @@ Each benchmark contains two main files: `<host>-<compiler>[-<variant>].json`, an
 To collect a set of results, we go to the top-level directory of this repository and run:
 
 ```bash
-git clone https://github.com/simdjson/simdjson
 ./run_benchmark_official.sh <host> <simdjson version> [<git commit>] [<compilers>] [<variants>]
 ```
 
