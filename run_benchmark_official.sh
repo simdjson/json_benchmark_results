@@ -48,22 +48,23 @@ function bench_results() {
             ;;
     esac
 
+    suffix="-$variant"
+    cmake_flags="-DCMAKE_BUILD_TYPE=Release"            
     case $variant in
-        default)
+        release)
             suffix=""
-            cmake_flags=""
+            ;;
+        debug)
+            cmake_flags="-DCMAKE_BUILD_TYPE=Debug"
             ;;
         native)
-            suffix="-native"
-            cmake_flags="-DCMAKE_CXX_FLAGS=-march=native"
+            cmake_flags="$cmake_flags -DCMAKE_CXX_FLAGS=-march=native"
             ;;
         fallback)
-            suffix="-fallback"
-            cmake_flags="-DSIMDJSON_IMPLEMENTATION=fallback"
+            cmake_flags="$cmake_flags -DSIMDJSON_IMPLEMENTATION=fallback"
             ;;
         westmere)
-            suffix="-westmere"
-            cmake_flags="-DSIMDJSON_IMPLEMENTATION=westmere"
+            cmake_flags="$cmake_flags -DSIMDJSON_IMPLEMENTATION=\"westmere fallback\""
             ;;
         *)
             echo "Unknown variant $variant"
@@ -113,7 +114,7 @@ host=$1
 base_version=$2
 commits=${3:-"$base_version"}
 compilers=${4:-"clang11 gcc10.2"}
-variants=${5:-default}
+variants=${5:-release}
 
 cd $SCRIPT_DIR/simdjson
 git remote update

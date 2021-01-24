@@ -44,12 +44,14 @@ The parameters:
 
 * `<host>` is the name of the host for identification purposes--e.g. `skylake`, `skylake-x`, `ampere`. This is freeform and can contain any value.
 * `<simdjson version>` is the version of simdjson the commit is based off of, e.g. `v0.7.0`. It should match the actual git tag of the simdjson version.
-* `<git commits>` is the set of commits you want to test, separated by spaces. For example, `"v0.8.0~1 v0.8.0~2"` will test the two commits just before v0.8.0. The script will calculate how many commits they are from the simdjson version. If this is not specified or is empty, it defaults to the simdjson version (e.g. `<v0.8.0>`).
-* `<compilers>` is the set of compilers you want to run, separated by spaces. Valid values are clang6, clang7, clang8, clang9, clang10, clang11 gcc7, gcc8, gcc9 and gcc10.2. If this is not specified or is empty, it defaults to `"clang11 gcc10.2"`.
-* `<variants>` are variants of simdjson you want to test, separated by spaces. If this is not specified or is empty, it defaults to `"default"`. Valid values are:
-  - `default`: compile without any extra flags (just -O3).
-  - `native`: compile with `-march=native`.
-  - `fallback`: compile with only the fallback kernel.
+* `<git commits>` is the set of commits you want to test, separated by spaces. For example, `"v0.8.0~1 v0.8.0~2"` will test the two commits just before v0.8.0. The script will calculate how many commits they are from the simdjson version. If this is not specified or is empty, it releases to the simdjson version (e.g. `<v0.8.0>`).
+* `<compilers>` is the set of compilers you want to run, separated by spaces. Valid values are clang6, clang7, clang8, clang9, clang10, clang11 gcc7, gcc8, gcc9 and gcc10.2. If this is not specified or is empty, it releases to `"clang11 gcc10.2"`.
+* `<variants>` are variants of simdjson you want to test, separated by spaces. If this is not specified or is empty, it releases to `release`. Valid values are:
+  - `release`: compile release build.
+  - `debug`: compile debug build.
+  - `native`: compile release build with `-march=native`.
+  - `fallback`: compile release build with -DSIMDJSON_IMPLEMENTATION=fallback.
+  - `westmere`: compile release build with -DSIMDJSON_IMPLEMENTATION="westmere fallback".
 
 The output files will automatically be collected in the right places.
 
@@ -57,9 +59,9 @@ The v0.7.0 and v0.8.0 benchmarks on skylake were collected by running:
 
 ```
 host=skylake
-./run_benchmark_official.sh $host v0.8.0 "" "clang10 clang11 gcc10.2" "default native fallback"
-./run_benchmark_official.sh $host v0.7.0 "" "clang10 clang11 gcc10.2" "default native fallback"
-./run_benchmark_official.sh $host v0.7.0 "v0.8.0~1 v0.8.0~5 v0.8.0~10 v0.8.0~15 v0.8.0~20 v0.8.0~25 v0.8.0~30 v0.8.0~35" "" "default native"
+./run_benchmark_official.sh $host v0.8.0 "" "clang10 clang11 gcc10.2" "release native fallback westmere debug"
+./run_benchmark_official.sh $host v0.7.0 "" "clang10 clang11 gcc10.2" "release native fallback westmere debug"
+./run_benchmark_official.sh $host v0.7.0 "v0.8.0~1 v0.8.0~5 v0.8.0~10 v0.8.0~15 v0.8.0~20 v0.8.0~25 v0.8.0~30 v0.8.0~35" "" "release native"
 ```
 
 ### Generating .pngs
