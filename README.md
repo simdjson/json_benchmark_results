@@ -57,11 +57,13 @@ The output files will automatically be collected in the right places.
 The v0.7.0 and v0.8.0 benchmarks on skylake were collected by running:
 
 ```
-host=skylake
-./run_benchmark_official.sh $host v0.8.0 "" "clang10 clang11 gcc10.2" "release native fallback westmere debug"
-./run_benchmark_official.sh $host v0.7.0 "" "clang10 clang11 gcc10.2" "release native fallback westmere debug"
+host=<skylake/skylake-x/ampere/rome/etc.>
+./run_benchmark_official.sh $host v0.8.0 "" "clang10 clang11 gcc10.2" "release native westmere debug"
+./run_benchmark_official.sh $host v0.7.0 "" "clang10 clang11 gcc10.2" "release native westmere debug"
 ./run_benchmark_official.sh $host v0.7.0 "v0.8.0~1 v0.8.0~5 v0.8.0~10 v0.8.0~15 v0.8.0~20 v0.8.0~25 v0.8.0~30 v0.8.0~35" "" "release native"
 ```
+
+Note: the westmere and native targets do not apply to ARM machines (and will not work).
 
 ### Generating .pngs
 

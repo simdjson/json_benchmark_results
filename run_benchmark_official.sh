@@ -69,7 +69,7 @@ function bench_results() {
             cmake_flags="$cmake_flags -DSIMDJSON_IMPLEMENTATION=fallback"
             ;;
         westmere)
-            cmake_flags="$cmake_flags -DSIMDJSON_IMPLEMENTATION=\"westmere fallback\""
+            cmake_flags="$cmake_flags -DSIMDJSON_EXCLUDE_IMPLEMENTATION=fallback"
             ;;
         *)
             echo "Unknown variant $variant"
