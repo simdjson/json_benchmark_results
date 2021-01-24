@@ -61,6 +61,9 @@ host=<skylake/skylake-x/ampere/rome/etc.>
 ./run_benchmark_official.sh $host v0.8.0 "" "clang10 clang11 gcc10.2" "release native westmere debug"
 ./run_benchmark_official.sh $host v0.7.0 "" "clang10 clang11 gcc10.2" "release native westmere debug"
 ./run_benchmark_official.sh $host v0.7.0 "v0.8.0~1 v0.8.0~5 v0.8.0~10 v0.8.0~15 v0.8.0~20 v0.8.0~25 v0.8.0~30 v0.8.0~35" "clang11 gcc10.2" "release native"
+./run_benchmark_official.sh $host v0.7.0 "v0.8.0~2 v0.8.0~3 v0.8.0~4 v0.8.0~6 v0.8.0~7 v0.8.0~8 v0.8.0~9 v0.8.0~11 v0.8.0~12 v0.8.0~13 v0.8.0~14" "clang11 gcc10.2" "release native"
+./run_benchmark_official.sh $host v0.7.0 "v0.8.0~16 v0.8.0~17 v0.8.0~18 v0.8.0~19 v0.8.0~21 v0.8.0~22 v0.8.0~23 v0.8.0~24 v0.8.0~26 v0.8.0~27 v0.8.0~28 v0.8.0~29" "clang11 gcc10.2" "release native"
+./run_benchmark_official.sh $host v0.7.0 "v0.8.0~31 v0.8.0~32 v0.8.0~33 v0.8.0~34 v0.8.0~36 v0.8.0~37" "clang11 gcc10.2" "release native"
 ```
 
 Note: the westmere and native targets do not apply to ARM machines (and will not work).

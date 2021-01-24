@@ -4,6 +4,7 @@ if [ ! -d $SIMDJSON_DIR ]; then
     cd $(dirname $SIMDJSON_DIR)
     git clone https://github.com/simdjson/simdjson
 fi
+FORCE=
 
 function bench_results() {
     host=$1
@@ -85,8 +86,12 @@ function bench_results() {
     json_file_base=$base_dir/$host-$compiler$suffix
     json_file=$json_file_base.json
 
-    echo run_benchmark $commit $json_file "$cmake_flags" \> $json_file_base.out 2\>\&1
-    run_benchmark $commit $json_file "$cmake_flags" > $json_file_base.out 2>&1
+    if [ -f $json_file ] && [ "$FORCE" = "" ]; then
+        echo $json_file already generated
+    else
+        echo run_benchmark $commit $json_file "$cmake_flags" \> $json_file_base.out 2\>\&1
+        run_benchmark $commit $json_file "$cmake_flags" > $json_file_base.out 2>&1
+    fi
 
     echo
     echo $json_file
