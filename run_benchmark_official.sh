@@ -100,9 +100,9 @@ function run_benchmark() {
     mkdir -p build
     cd build
     echo cmake $cmake_flags ..
-    cmake $cmake_flags ..
+    cmake -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON $cmake_flags ..
     echo make bench_ondemand
-    make bench_ondemand
+    make --no-print-directory bench_ondemand
 
     # Run the benchmark
     echo benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json
