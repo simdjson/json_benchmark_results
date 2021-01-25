@@ -77,7 +77,7 @@ runs = [
     run.dataframe() for run in runs
     if match_any(args.compilers, run.compiler_plus_version)
     if match_any(args.variants, run.variant)
-    if match_any(args.versions, run.base_version if run.commits_past_version == 0 else f"{run.base_version}+{run.commits_past_version}")
+    if match_any(args.versions, run.version_path)
 ]
 if len(runs) == 0:
     print("All matching benchmarks already have graphs!")

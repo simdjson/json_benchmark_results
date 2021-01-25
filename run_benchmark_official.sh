@@ -1,10 +1,10 @@
+#!/usr/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 SIMDJSON_DIR=$SCRIPT_DIR/simdjson
 if [ ! -d $SIMDJSON_DIR ]; then
     cd $(dirname $SIMDJSON_DIR)
     git clone https://github.com/simdjson/simdjson
 fi
-FORCE=
 
 function bench_results() {
     host=$1
@@ -12,10 +12,6 @@ function bench_results() {
     base_version=$3
     commit=$4
     variant=$5
-
-    # Figure out # of commits past version
-    cd $SCRIPT_DIR/simdjson
-    commits_past_version=$(git rev-list --count --first-parent $base_version...$commit)
 
     case $compiler in
         clang6)
@@ -78,19 +74,38 @@ function bench_results() {
             ;;
     esac
 
+    #
+    # Create base directory file will live in
+    #
     base_dir=$SCRIPT_DIR/$base_version
+
+    # Figure out # of commits past version
+    cd $SCRIPT_DIR/simdjson
+    fork_commit=$(git merge-base $base_version $commit)
+    commits_past_version=$(git rev-list --count --first-parent $base_version...$fork_commit)
     if [ "$commits_past_version" -ne "0" ]; then
-        base_dir=$base_dir/$commits_past_version
+        base_dir="$base_dir/$commits_past_version"
     fi
+
+    # Figure out if commit is unmerged
+    actual_commit=$(git rev-list -n 1 $commit)
+    if [ "$fork_commit" != "$actual_commit" ]; then
+        base_dir="$base_dir/$actual_commit"
+    fi
+
     mkdir -p $base_dir
-    json_file_base=$base_dir/$host-$compiler$suffix
-    json_file=$json_file_base.json
+
+    #
+    # Run benchmark (unless it's already been run)
+    #
+    file_base=$base_dir/$host-$compiler$suffix
+    json_file=$file_base.json
 
     if [ -f $json_file ] && [ "$FORCE" = "" ]; then
         echo $json_file already generated
     else
-        echo run_benchmark $commit $json_file "$cmake_flags" \> $json_file_base.out 2\>\&1
-        run_benchmark $commit $json_file "$cmake_flags" > $json_file_base.out 2>&1
+        echo run_benchmark $commit $json_file "$cmake_flags" \> $file_base.out 2\>\&1
+        run_benchmark $commit $json_file "$cmake_flags" > $file_base.out 2>&1
 
         echo
         echo $json_file
