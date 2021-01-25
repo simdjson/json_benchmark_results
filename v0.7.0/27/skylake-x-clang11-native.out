@@ -1,0 +1,24 @@
+run_benchmark: v0.8.0~11 /home/jkeiser/simdjson_benchmark_results/v0.7.0/27/skylake-x-clang11-native.json -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native
+git reset --hard v0.8.0~11
+HEAD is now at 3b848666 Removing trailing white space.
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The C compiler identification is unknown
+-- Check for working C compiler: /usr/bin/gcc-10
+-- Check for working C compiler: /usr/bin/gcc-10 -- works
+-- Detecting C compiler ABI info
+CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+CMake Error at /usr/share/cmake-3.16/Modules/CMakeDetermineCompilerABI.cmake:45 (try_compile):
+  Failed to configure test project build system.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:74 (CMAKE_DETERMINE_COMPILER_ABI)
+  CMakeLists.txt:3 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeOutput.log".
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeError.log".
+make bench_ondemand
+make: getcwd: No such file or directory
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/27/skylake-x-clang11-native.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 120: benchmark/bench_ondemand: No such file or directory

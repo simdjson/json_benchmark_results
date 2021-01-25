@@ -91,11 +91,11 @@ function bench_results() {
     else
         echo run_benchmark $commit $json_file "$cmake_flags" \> $json_file_base.out 2\>\&1
         run_benchmark $commit $json_file "$cmake_flags" > $json_file_base.out 2>&1
-    fi
 
-    echo
-    echo $json_file
-    echo
+        echo
+        echo $json_file
+        echo
+    fi
 }
 
 function run_benchmark() {
@@ -113,7 +113,7 @@ function run_benchmark() {
     cmake_flags="$cmake_flags -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
     echo cmake $cmake_flags ..
     cmake $cmake_flags ..
-    echo make bench_ondemand
+    echo --no-print-directory make bench_ondemand
     make --no-print-directory bench_ondemand
 
     # Run the benchmark

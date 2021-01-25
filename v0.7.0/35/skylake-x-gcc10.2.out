@@ -1,0 +1,24 @@
+run_benchmark: v0.8.0~3 /home/jkeiser/simdjson_benchmark_results/v0.7.0/35/skylake-x-gcc10.2.json -DCMAKE_BUILD_TYPE=Release
+git reset --hard v0.8.0~3
+HEAD is now at 73063e2d This adds a test to explain better the issue 1341: Support conversion of simdjson_result lvalue to dom::element (#1397)
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The C compiler identification is GNU 10.2.0
+-- Check for working C compiler: /usr/bin/gcc-10
+-- Check for working C compiler: /usr/bin/gcc-10 -- works
+-- Detecting C compiler ABI info
+CMake Error: The source directory "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp" does not appear to contain CMakeLists.txt.
+Specify --help for usage, or press the help button on the CMake GUI.
+CMake Error at /usr/share/cmake-3.16/Modules/CMakeDetermineCompilerABI.cmake:45 (try_compile):
+  Failed to configure test project build system.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:74 (CMAKE_DETERMINE_COMPILER_ABI)
+  CMakeLists.txt:3 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeOutput.log".
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeError.log".
+make bench_ondemand
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/35/skylake-x-gcc10.2.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 120: benchmark/bench_ondemand: No such file or directory

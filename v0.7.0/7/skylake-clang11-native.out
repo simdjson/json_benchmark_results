@@ -1,0 +1,21 @@
+run_benchmark: v0.8.0~31 /home/jkeiser/simdjson_benchmark_results/v0.7.0/7/skylake-clang11-native.json -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native
+git reset --hard v0.8.0~31
+HEAD is now at f785f76 Merge pull request #1342 from simdjson/jkeiser/iter-safety
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+CMake Error at /home/jkeiser/.linuxbrew/Cellar/cmake/3.17.3/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:48 (message):
+  Could not find compiler set in environment variable CXX:
+
+  clang++-11.
+
+Call Stack (most recent call first):
+  CMakeLists.txt:3 (project)
+
+
+CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeOutput.log".
+make bench_ondemand
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/7/skylake-clang11-native.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 121: benchmark/bench_ondemand: No such file or directory

@@ -1,0 +1,101 @@
+run_benchmark: v0.8.0~34 /home/jkeiser/simdjson_benchmark_results/v0.7.0/4/skylake-x-clang11-native.json -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native
+git reset --hard v0.8.0~34
+HEAD is now at 9a404bdc Reenabling the optimized kernels (main branch). (#1344)
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The simdjson repository appears to be standalone.
+-- By default, we attempt to build everything.
+-- Building a dynamic library.
+-- Library output directory: /home/jkeiser/simdjson_benchmark_results/simdjson/build
+-- Importing google_benchmarks (google/benchmark@8982e1e)
+-- Failed to find LLVM FileCheck
+-- git Version: v0.2.1-9a404bdc
+-- Version: 0.2.1
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES -- failed to compile
+-- Performing Test HAVE_STD_REGEX -- success
+-- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+-- Performing Test HAVE_POSIX_REGEX -- success
+-- Performing Test HAVE_STEADY_CLOCK -- success
+-- Importing cjson (DaveGamble/cJSON@c69134d)
+-- Importing fastjson (mikeando/fastjson@485f994)
+-- Importing gason (vivkin/gason@7aee524)
+-- Importing jsmn (zserge/jsmn@18e9fe4)
+-- Importing json (nlohmann/json@v3.9.1)
+-- Importing json11 (dropbox/json11@ec4e452)
+-- Importing rapidjson (Tencent/rapidjson@b32cd94)
+-- Importing sajson (chadaustin/sajson@2dcfd35)
+-- Importing ujson4c (esnme/ujson4c@e14f3fd)
+-- Importing yyjson (ibireme/yyjson@aa33ec5)
+-- Importing cxxopts (jarro2783/cxxopts@794c975)
+-- cxxopts version 2.2.0
+-- We have cxxopts as a dependency and we are buiding the tools (e.g., json2json).
+-- Git is available and it is recent. We are enabling checkperf targets.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jkeiser/simdjson_benchmark_results/simdjson/build
+make bench_ondemand
+/usr/bin/cmake -S/home/jkeiser/simdjson_benchmark_results/simdjson -B/home/jkeiser/simdjson_benchmark_results/simdjson/build --check-build-system CMakeFiles/Makefile.cmake 0
+make -f CMakeFiles/Makefile2 bench_ondemand
+/usr/bin/cmake -S/home/jkeiser/simdjson_benchmark_results/simdjson -B/home/jkeiser/simdjson_benchmark_results/simdjson/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles 10
+make -f CMakeFiles/Makefile2 benchmark/CMakeFiles/bench_ondemand.dir/all
+make -f _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/build.make _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src/CMakeFiles/benchmark.dir/DependInfo.cmake --color=
+make -f _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/build.make _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/build
+make[3]: Nothing to be done for '_deps/google_benchmarks/src/CMakeFiles/benchmark.dir/build'.
+[ 80%] Built target benchmark
+make -f jsonexamples/generated/CMakeFiles/generated-data.dir/build.make jsonexamples/generated/CMakeFiles/generated-data.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/jsonexamples/generated /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/CMakeFiles/generated-data.dir/DependInfo.cmake --color=
+make -f jsonexamples/generated/CMakeFiles/generated-data.dir/build.make jsonexamples/generated/CMakeFiles/generated-data.dir/build
+make[3]: Nothing to be done for 'jsonexamples/generated/CMakeFiles/generated-data.dir/build'.
+[ 80%] Built target generated-data
+make -f src/CMakeFiles/simdjson.dir/build.make src/CMakeFiles/simdjson.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/src /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/src /home/jkeiser/simdjson_benchmark_results/simdjson/build/src/CMakeFiles/simdjson.dir/DependInfo.cmake --color=
+Scanning dependencies of target simdjson
+make -f src/CMakeFiles/simdjson.dir/build.make src/CMakeFiles/simdjson.dir/build
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/src && /usr/bin/clang++-11  -DSIMDJSON_THREADS_ENABLED=1 -Dsimdjson_EXPORTS -I/home/jkeiser/simdjson_benchmark_results/simdjson/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/src  -march=native -O3 -DNDEBUG -fPIC   -pthread -fPIC -Werror -Wall -Wextra -Weffc++ -Wsign-compare -Wshadow -Wwrite-strings -Wpointer-arith -Winit-self -Wconversion -Wno-sign-conversion -std=c++17 -o CMakeFiles/simdjson.dir/simdjson.cpp.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/src/simdjson.cpp
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/src && /usr/bin/cmake -E cmake_link_script CMakeFiles/simdjson.dir/link.txt --verbose=1
+/usr/bin/clang++-11 -fPIC -march=native -O3 -DNDEBUG  -shared -Wl,-soname,libsimdjson.so.6 -o ../libsimdjson.so.6.0.0 CMakeFiles/simdjson.dir/simdjson.cpp.o  -pthread 
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/src && /usr/bin/cmake -E cmake_symlink_library ../libsimdjson.so.6.0.0 ../libsimdjson.so.6 ../libsimdjson.so
+[ 90%] Built target simdjson
+make -f benchmark/CMakeFiles/bench_ondemand.dir/build.make benchmark/CMakeFiles/bench_ondemand.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/benchmark /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark/CMakeFiles/bench_ondemand.dir/DependInfo.cmake --color=
+Scanning dependencies of target bench_ondemand
+make -f benchmark/CMakeFiles/bench_ondemand.dir/build.make benchmark/CMakeFiles/bench_ondemand.dir/build
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark && /usr/bin/clang++-11  -DSIMDJSON_BENCHMARK_DATA_DIR=\"/home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/\" -DSIMDJSON_MINEFIELD_TEST_DATA_DIR=\"/home/jkeiser/simdjson_benchmark_results/simdjson/jsonchecker/minefield/\" -DSIMDJSON_TEST_DATA_DIR=\"/home/jkeiser/simdjson_benchmark_results/simdjson/jsonchecker/\" -DSIMDJSON_THREADS_ENABLED=1 -DSIMDJSON_USING_LIBRARY=1 -I/home/jkeiser/simdjson_benchmark_results/simdjson/benchmark/. -I/home/jkeiser/simdjson_benchmark_results/simdjson/benchmark/linux -I/home/jkeiser/simdjson_benchmark_results/simdjson/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -march=native -O3 -DNDEBUG   -pthread -std=c++17 -o CMakeFiles/bench_ondemand.dir/bench_ondemand.cpp.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/benchmark/bench_ondemand.cpp
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark && /usr/bin/cmake -E cmake_link_script CMakeFiles/bench_ondemand.dir/link.txt --verbose=1
+/usr/bin/clang++-11  -march=native -O3 -DNDEBUG   CMakeFiles/bench_ondemand.dir/bench_ondemand.cpp.o  -o bench_ondemand  -Wl,-rpath,/home/jkeiser/simdjson_benchmark_results/simdjson/build ../libsimdjson.so.6.0.0 ../_deps/google_benchmarks/src/libbenchmark.a -pthread /usr/lib/x86_64-linux-gnu/librt.so 
+[100%] Built target bench_ondemand
+/usr/bin/cmake -E cmake_progress_start /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles 0
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/4/skylake-x-clang11-native.json --benchmark_out_format=json
+2021-01-24 23:50:37
+Running benchmark/bench_ondemand
+Run on (4 X 3200 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 1024 KiB (x4)
+  L3 Unified 8448 KiB (x1)
+Load Average: 1.01, 1.01, 1.00
+***WARNING*** CPU scaling is enabled, the benchmark real time measurements may be noisy and will incur extra overhead.
+On Demand implementation: haswell
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations best_branch_miss best_bytes_per_sec best_cache_miss best_cache_ref best_cycles best_cycles_per_byte best_docs_per_sec best_frequency best_instructions best_instructions_per_byte best_instructions_per_cycle best_items_per_sec branch_miss      bytes bytes_per_second cache_miss  cache_ref     cycles cycles_per_byte docs_per_sec  frequency instructions instructions_per_byte instructions_per_cycle      items items_per_second
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PartialTweets<OnDemand>      209718 ns       209712 ns         3327           1.934k           3.27475G               3         4.855k    615.818k             0.975144          5.18554k       3.19335G           1.7614M                    2.78917                     2.86027           518.554k    2.15991k   631.515k       2.80454G/s    6.22362   4.93526k   623.613k        0.987487   4.76845k/s 2.97367G/s     1.76141M               2.78917                2.82452        100       476.845k/s [best: throughput=  3.27 GB/s doc_throughput=  5185 docs/s instructions=     1761405 cycles=      615818 branch_miss=    1934 cache_miss=       3 cache_ref=      4855 items=       100 avg_time=    195429 ns]
+PartialTweets<Dom>           342985 ns       342976 ns         2042           3.719k           1.94989G               0        31.133k    1034.22k              1.63768          3.08764k        3.1933G          2.93688M                    4.65054                     2.83971           308.764k    3.85663k   631.515k       1.71483G/s  0.0528893    31.313k   1040.38k         1.64744   2.91566k/s  3.0334G/s     2.93688M               4.65054                2.82288        100       291.566k/s [best: throughput=  1.95 GB/s doc_throughput=  3087 docs/s instructions=     2936884 cycles=     1034220 branch_miss=    3719 cache_miss=       0 cache_ref=     31133 items=       100 avg_time=    326140 ns]
+Creating a source file spanning 44921 KB 
+LargeRandom<Dom>          101181749 ns    101177389 ns            7         901.852k           456.941M        6.86074M       6.89512M    320.954M              6.97745           9.93376       3.18828G          1019.45M                    22.1626                     3.17632           9.93376M    901.537k   45.9988M       433.574M/s   6.81677M   6.89517M   322.477M         7.01056    9.88363/s 3.18725G/s     1019.45M               22.1626                3.16131      1000k       9.88363M/s [best: throughput=  0.46 GB/s doc_throughput=     9 docs/s instructions=  1019451749 cycles=   320954015 branch_miss=  901852 cache_miss= 6860737 cache_ref=   6895117 items=   1000000 avg_time= 101153945 ns]
+LargeRandomSum<Dom>       101001035 ns    100997806 ns            7         900.507k           456.975M        6.38683M        6.5198M    320.938M              6.97709            9.9345       3.18836G          1012.45M                    22.0104                     3.15467            9.9345M    899.867k   45.9988M       434.345M/s   6.42231M   6.51976M   321.918M         6.99841    9.90121/s 3.18738G/s     1012.45M               22.0104                3.14506      1000k       9.90121M/s [best: throughput=  0.46 GB/s doc_throughput=     9 docs/s instructions=  1012451748 cycles=   320937792 branch_miss=  900507 cache_miss= 6386831 cache_ref=   6519798 items=   1000000 avg_time= 100972650 ns]
+LargeRandom<OnDemand>      68804869 ns     68804275 ns           10         938.118k           669.861M        3.43799M       3.57259M    218.951M              4.75994           14.5626        3.1885G          600.908M                    13.0636                     2.74448           14.5626M    943.796k   45.9988M       637.575M/s   3.48097M   3.57257M    219.29M         4.76731     14.534/s 3.18716G/s     600.908M               13.0636                2.74024      1000k        14.534M/s [best: throughput=  0.67 GB/s doc_throughput=    14 docs/s instructions=   600907858 cycles=   218951346 branch_miss=  938118 cache_miss= 3437994 cache_ref=   3572585 items=   1000000 avg_time=  68778009 ns]
+LargeRandomSum<OnDemand>   69012015 ns     69008822 ns           10         907.774k           667.392M        3.10381M        3.1965M    219.777M              4.77788           14.5089       3.18872G          603.907M                    13.1288                     2.74782           14.5089M    909.439k   45.9988M       635.685M/s   3.12034M   3.19663M   219.929M         4.78119    14.4909/s 3.18697G/s     603.907M               13.1288                2.74592      1000k       14.4909M/s [best: throughput=  0.67 GB/s doc_throughput=    14 docs/s instructions=   603907124 cycles=   219776818 branch_miss=  907774 cache_miss= 3103808 cache_ref=   3196497 items=   1000000 avg_time=  68984262 ns]
+Creating a source file spanning 134087 KB 
+Kostya<Dom>               108912975 ns    108908753 ns            6         1020.28k           1.26297G        10.2391M        10.317M    346.583M              2.52419           9.19828       3.18797G          971.471M                    7.07528                       2.803           4.82255M    1020.07k   137.305M       1.17415G/s   10.2199M   10.3171M   347.124M         2.52813      9.182/s 3.18729G/s     971.471M               7.07528                2.79863   524.288k       4.81401M/s [best: throughput=  1.26 GB/s doc_throughput=     9 docs/s instructions=   971471361 cycles=   346583276 branch_miss= 1020282 cache_miss=10239051 cache_ref=  10317030 items=    524288 avg_time= 108884048 ns]
+KostyaSum<Dom>            107685046 ns    107681796 ns            6         1019.99k           1.27898G        9.99844M       10.1194M    342.265M              2.49273            9.3149       3.18816G          968.326M                    7.05237                     2.82917           4.88369M     1020.3k   137.305M       1.18753G/s   10.0316M   10.1196M   343.195M         2.49951    9.28662/s 3.18712G/s     968.326M               7.05237                 2.8215   524.288k       4.86886M/s [best: throughput=  1.28 GB/s doc_throughput=     9 docs/s instructions=   968325633 cycles=   342264539 branch_miss= 1019992 cache_miss= 9998440 cache_ref=  10119384 items=    524288 avg_time= 107653971 ns]
+Kostya<OnDemand>           65532495 ns     65531912 ns           11         454.875k           2.09876G        6.28567M       6.47075M    208.589M              1.51916           15.2854       3.18836G          594.745M                    4.33156                     2.85128           8.01394M    454.947k   137.305M       1.95134G/s   6.36017M   6.47075M   208.826M         1.52089    15.2597/s 3.18664G/s     594.745M               4.33156                2.84804   524.288k        8.0005M/s [best: throughput=  2.10 GB/s doc_throughput=    15 docs/s instructions=   594745488 cycles=   208588936 branch_miss=  454875 cache_miss= 6285673 cache_ref=   6470749 items=    524288 avg_time=  65503113 ns]
+KostyaSum<OnDemand>        66827003 ns     66824721 ns           10         457.522k           2.05615G        6.20869M       6.27283M     212.91M              1.55064           14.9751       3.18835G          596.842M                    4.34684                     2.80326           7.85125M    457.381k   137.305M       1.91359G/s   6.20339M   6.27288M   212.949M         1.55092    14.9645/s 3.18668G/s     596.842M               4.34684                2.80275   524.288k       7.84572M/s [best: throughput=  2.06 GB/s doc_throughput=    14 docs/s instructions=   596842427 cycles=   212910417 branch_miss=  457522 cache_miss= 6208691 cache_ref=   6272831 items=    524288 avg_time=  66797565 ns]
+DistinctUserID<Dom>          343008 ns       342996 ns         2043            3.92k           1.96307G               2        32.841k    1027.21k              1.62658          3.10852k        3.1931G          2.87669M                    4.55523                     2.80049           357.479k    4.08469k   631.515k       1.71473G/s    3.27802   32.7418k   1034.79k         1.63858   2.91549k/s 3.01691G/s     2.87669M               4.55523                2.77999        115       335.281k/s [best: throughput=  1.96 GB/s doc_throughput=  3108 docs/s instructions=     2876694 cycles=     1027210 branch_miss=    3920 cache_miss=       2 cache_ref=     32841 items=       115 avg_time=    324392 ns]
+On Demand implementation: haswell
+DistinctUserID<OnDemand>     200085 ns       200081 ns         3461           2.401k            3.4771G               0          1.18k    579.997k             0.918422          5.50597k       3.19345G          1.72264M                    2.72779                     2.97009           633.187k     2.5734k   631.515k       2.93953G/s    2.6004m   1.27226k   585.464k        0.927078   4.99798k/s 2.92614G/s     1.72264M               2.72779                2.94235        115       574.768k/s [best: throughput=  3.48 GB/s doc_throughput=  5505 docs/s instructions=     1722642 cycles=      579997 branch_miss=    2401 cache_miss=       0 cache_ref=      1180 items=       115 avg_time=    183453 ns]
+FindTweet<Dom>               323061 ns       323054 ns         2149           3.535k           2.09471G               0        28.194k    962.759k              1.52452          3.31696k       3.19343G          2.78235M                    4.40583                     2.88997           3.31696k    3.65755k   631.515k       1.82058G/s  0.0837599   28.1295k   968.804k         1.53409   3.09546k/s 2.99889G/s     2.78235M               4.40583                2.87194          1       3.09546k/s [best: throughput=  2.09 GB/s doc_throughput=  3316 docs/s instructions=     2782348 cycles=      962759 branch_miss=    3535 cache_miss=       0 cache_ref=     28194 items=         1 avg_time=    303667 ns]
+On Demand implementation: haswell
+FindTweet<OnDemand>          149075 ns       149072 ns         4695             1079             4.807G               0         1.384k    419.635k             0.664489          7.61186k        3.1942G          1.30572M                    2.06761                     3.11157           7.61186k    1.15506k   631.515k       3.94538G/s    851.97u   1.36191k   422.997k        0.669814   6.70819k/s 2.83755G/s     1.30572M               2.06761                3.08684          1       6.70819k/s [best: throughput=  4.81 GB/s doc_throughput=  7611 docs/s instructions=     1305724 cycles=      419635 branch_miss=    1079 cache_miss=       0 cache_ref=      1384 items=         1 avg_time=    132528 ns]

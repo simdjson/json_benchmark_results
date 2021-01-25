@@ -1,0 +1,22 @@
+run_benchmark: v0.8.0~14 /home/jkeiser/simdjson_benchmark_results/v0.7.0/24/skylake-x-gcc10.2.json -DCMAKE_BUILD_TYPE=Release
+git reset --hard v0.8.0~14
+HEAD is now at 7597cb35 Folding the line.
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The simdjson repository appears to be standalone.
+-- By default, we attempt to build everything.
+CMake Error at /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:146 (message):
+  Could NOT find Threads (missing: Threads_FOUND)
+Call Stack (most recent call first):
+  /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:393 (_FPHSA_FAILURE_MESSAGE)
+  /usr/share/cmake-3.16/Modules/FindThreads.cmake:220 (FIND_PACKAGE_HANDLE_STANDARD_ARGS)
+  cmake/simdjson-flags.cmake:203 (find_package)
+  CMakeLists.txt:17 (include)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeOutput.log".
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeError.log".
+make bench_ondemand
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/24/skylake-x-gcc10.2.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 120: benchmark/bench_ondemand: No such file or directory

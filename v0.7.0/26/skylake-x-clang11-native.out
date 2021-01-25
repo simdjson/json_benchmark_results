@@ -1,0 +1,44 @@
+run_benchmark: v0.8.0~12 /home/jkeiser/simdjson_benchmark_results/v0.7.0/26/skylake-x-clang11-native.json -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native
+git reset --hard v0.8.0~12
+HEAD is now at 451c393e [skip ci] Skip CI for Github (#1336)
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The C compiler identification is GNU 10.2.0
+-- Check for working C compiler: /usr/bin/gcc-10
+-- Check for working C compiler: /usr/bin/gcc-10 -- broken
+CMake Error at /usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:60 (message):
+  The C compiler
+
+    "/usr/bin/gcc-10"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp
+    
+    Run Build Command(s):/usr/bin/gmake cmTC_1e742/fast && /usr/bin/gmake -f CMakeFiles/cmTC_1e742.dir/build.make CMakeFiles/cmTC_1e742.dir/build
+    gmake[1]: Entering directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp'
+    Building C object CMakeFiles/cmTC_1e742.dir/testCCompiler.c.o
+    /usr/bin/gcc-10    -o CMakeFiles/cmTC_1e742.dir/testCCompiler.c.o   -c /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp/testCCompiler.c
+    Assembler messages:
+    Fatal error: can't create CMakeFiles/cmTC_1e742.dir/testCCompiler.c.o: No such file or directory
+    gmake[1]: *** [CMakeFiles/cmTC_1e742.dir/build.make:66: CMakeFiles/cmTC_1e742.dir/testCCompiler.c.o] Error 1
+    gmake[1]: Leaving directory '/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp'
+    gmake: *** [Makefile:121: cmTC_1e742/fast] Error 2
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  CMakeLists.txt:3 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeOutput.log".
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeError.log".
+make bench_ondemand
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/26/skylake-x-clang11-native.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 120: benchmark/bench_ondemand: No such file or directory

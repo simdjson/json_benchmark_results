@@ -1,0 +1,206 @@
+run_benchmark: v0.8.0~31 /home/jkeiser/simdjson_benchmark_results/v0.7.0/7/skylake-clang11.json -DCMAKE_BUILD_TYPE=Release
+git reset --hard v0.8.0~31
+HEAD is now at f785f76d Merge pull request #1342 from simdjson/jkeiser/iter-safety
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The CXX compiler identification is Clang 11.0.0
+-- The C compiler identification is Clang 11.0.0
+-- Check for working CXX compiler: /usr/bin/clang++-11
+-- Check for working CXX compiler: /usr/bin/clang++-11 -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working C compiler: /usr/bin/clang-11
+-- Check for working C compiler: /usr/bin/clang-11 -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- The simdjson repository appears to be standalone.
+-- By default, we attempt to build everything.
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE  
+-- Looking for fork
+-- Looking for fork - found
+-- Looking for wait
+-- Looking for wait - found
+-- Building a dynamic library.
+-- Library output directory: /home/jkeiser/simdjson_benchmark_results/simdjson/build
+-- Importing google_benchmarks (google/benchmark@8982e1e)
+-- Failed to find LLVM FileCheck
+-- Found Git: /usr/bin/git (found version "2.27.0") 
+-- git Version: v0.2.1-f785f76d
+-- Version: 0.2.1
+-- Performing Test HAVE_CXX_FLAG_STD_CXX11
+-- Performing Test HAVE_CXX_FLAG_STD_CXX11 - Success
+-- Performing Test HAVE_CXX_FLAG_WALL
+-- Performing Test HAVE_CXX_FLAG_WALL - Success
+-- Performing Test HAVE_CXX_FLAG_WEXTRA
+-- Performing Test HAVE_CXX_FLAG_WEXTRA - Success
+-- Performing Test HAVE_CXX_FLAG_WSHADOW
+-- Performing Test HAVE_CXX_FLAG_WSHADOW - Success
+-- Performing Test HAVE_CXX_FLAG_WERROR
+-- Performing Test HAVE_CXX_FLAG_WERROR - Success
+-- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32
+-- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32 - Success
+-- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING
+-- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING - Success
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED - Success
+-- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING
+-- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING - Success
+-- Performing Test HAVE_CXX_FLAG_WD654
+-- Performing Test HAVE_CXX_FLAG_WD654 - Failed
+-- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY
+-- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY - Success
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES -- failed to compile
+-- Performing Test HAVE_CXX_FLAG_COVERAGE
+-- Performing Test HAVE_CXX_FLAG_COVERAGE - Success
+-- Performing Test HAVE_STD_REGEX
+-- Performing Test HAVE_STD_REGEX
+-- Performing Test HAVE_STD_REGEX -- success
+-- Performing Test HAVE_GNU_POSIX_REGEX
+-- Performing Test HAVE_GNU_POSIX_REGEX
+-- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+-- Performing Test HAVE_POSIX_REGEX
+-- Performing Test HAVE_POSIX_REGEX
+-- Performing Test HAVE_POSIX_REGEX -- success
+-- Performing Test HAVE_STEADY_CLOCK
+-- Performing Test HAVE_STEADY_CLOCK
+-- Performing Test HAVE_STEADY_CLOCK -- success
+-- Performing Test USE_BOOST_JSON
+-- Performing Test USE_BOOST_JSON - Failed
+-- Importing cjson (DaveGamble/cJSON@c69134d)
+-- Importing fastjson (mikeando/fastjson@485f994)
+-- Importing gason (vivkin/gason@7aee524)
+-- Importing jsmn (zserge/jsmn@18e9fe4)
+-- Importing json (nlohmann/json@v3.9.1)
+-- Importing json11 (dropbox/json11@ec4e452)
+-- Importing rapidjson (Tencent/rapidjson@b32cd94)
+-- Importing sajson (chadaustin/sajson@2dcfd35)
+-- Importing ujson4c (esnme/ujson4c@e14f3fd)
+-- Importing yyjson (ibireme/yyjson@aa33ec5)
+-- Importing cxxopts (jarro2783/cxxopts@794c975)
+-- cxxopts version 2.2.0
+-- We have cxxopts as a dependency and we are buiding the tools (e.g., json2json).
+-- Found Python3: /usr/bin/python3.8 (found version "3.8.6") found components: Interpreter 
+-- Git is available and it is recent. We are enabling checkperf targets.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jkeiser/simdjson_benchmark_results/simdjson/build
+make bench_ondemand
+/usr/bin/cmake -S/home/jkeiser/simdjson_benchmark_results/simdjson -B/home/jkeiser/simdjson_benchmark_results/simdjson/build --check-build-system CMakeFiles/Makefile.cmake 0
+make -f CMakeFiles/Makefile2 bench_ondemand
+/usr/bin/cmake -S/home/jkeiser/simdjson_benchmark_results/simdjson -B/home/jkeiser/simdjson_benchmark_results/simdjson/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles 11
+make -f CMakeFiles/Makefile2 benchmark/CMakeFiles/bench_ondemand.dir/all
+make -f _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/build.make _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src/CMakeFiles/benchmark.dir/DependInfo.cmake --color=
+Scanning dependencies of target benchmark
+make -f _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/build.make _deps/google_benchmarks/src/CMakeFiles/benchmark.dir/build
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/benchmark.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/benchmark.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/benchmark_api_internal.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/benchmark_api_internal.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/benchmark_name.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/benchmark_name.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/benchmark_register.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/benchmark_register.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/benchmark_runner.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/benchmark_runner.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/colorprint.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/colorprint.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/commandlineflags.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/commandlineflags.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/complexity.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/complexity.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/console_reporter.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/console_reporter.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/counter.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/counter.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/csv_reporter.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/csv_reporter.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/json_reporter.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/json_reporter.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/reporter.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/reporter.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/sleep.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/sleep.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/statistics.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/statistics.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/string_util.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/string_util.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/sysinfo.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/sysinfo.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/clang++-11  -DHAVE_POSIX_REGEX -DHAVE_STD_REGEX -DHAVE_STEADY_CLOCK -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -std=c++11  -Wall  -Wextra  -Wshadow  -Wshorten-64-to-32  -fstrict-aliasing  -Wno-deprecated-declarations  -Wstrict-aliasing  -Wthread-safety -O3 -DNDEBUG  -Werror  -Wno-deprecated   -std=c++17 -o CMakeFiles/benchmark.dir/timers.cc.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/timers.cc
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/cmake -P CMakeFiles/benchmark.dir/cmake_clean_target.cmake
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/_deps/google_benchmarks/src && /usr/bin/cmake -E cmake_link_script CMakeFiles/benchmark.dir/link.txt --verbose=1
+/usr/bin/ar qc libbenchmark.a  CMakeFiles/benchmark.dir/benchmark.cc.o CMakeFiles/benchmark.dir/benchmark_api_internal.cc.o CMakeFiles/benchmark.dir/benchmark_name.cc.o CMakeFiles/benchmark.dir/benchmark_register.cc.o CMakeFiles/benchmark.dir/benchmark_runner.cc.o CMakeFiles/benchmark.dir/colorprint.cc.o CMakeFiles/benchmark.dir/commandlineflags.cc.o CMakeFiles/benchmark.dir/complexity.cc.o CMakeFiles/benchmark.dir/console_reporter.cc.o CMakeFiles/benchmark.dir/counter.cc.o CMakeFiles/benchmark.dir/csv_reporter.cc.o CMakeFiles/benchmark.dir/json_reporter.cc.o CMakeFiles/benchmark.dir/reporter.cc.o CMakeFiles/benchmark.dir/sleep.cc.o CMakeFiles/benchmark.dir/statistics.cc.o CMakeFiles/benchmark.dir/string_util.cc.o CMakeFiles/benchmark.dir/sysinfo.cc.o CMakeFiles/benchmark.dir/timers.cc.o
+/usr/bin/ranlib libbenchmark.a
+[ 72%] Built target benchmark
+make -f jsonexamples/generated/CMakeFiles/generated-data.dir/build.make jsonexamples/generated/CMakeFiles/generated-data.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/jsonexamples/generated /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/CMakeFiles/generated-data.dir/DependInfo.cmake --color=
+Scanning dependencies of target generated-data
+make -f jsonexamples/generated/CMakeFiles/generated-data.dir/build.make jsonexamples/generated/CMakeFiles/generated-data.dir/build
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/jsonexamples/generated && /usr/bin/ruby genfeaturejson.rb /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/utf-8-full.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/utf-8.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/utf-8-miss.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/escape-full.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/escape.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/escape-miss.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/0-structurals-full.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/0-structurals.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/0-structurals-miss.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/7-structurals-full.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/7-structurals.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/7-structurals-miss.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/15-structurals-full.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/15-structurals.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/15-structurals-miss.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/23-structurals-full.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/23-structurals.json ...
+Writing /home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/generated/23-structurals-miss.json ...
+[ 81%] Built target generated-data
+make -f src/CMakeFiles/simdjson.dir/build.make src/CMakeFiles/simdjson.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/src /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/src /home/jkeiser/simdjson_benchmark_results/simdjson/build/src/CMakeFiles/simdjson.dir/DependInfo.cmake --color=
+Scanning dependencies of target simdjson
+make -f src/CMakeFiles/simdjson.dir/build.make src/CMakeFiles/simdjson.dir/build
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/src && /usr/bin/clang++-11  -DSIMDJSON_THREADS_ENABLED=1 -Dsimdjson_EXPORTS -I/home/jkeiser/simdjson_benchmark_results/simdjson/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/src  -O3 -DNDEBUG -fPIC   -pthread -fPIC -Werror -Wall -Wextra -Weffc++ -Wsign-compare -Wshadow -Wwrite-strings -Wpointer-arith -Winit-self -Wconversion -Wno-sign-conversion -std=c++17 -o CMakeFiles/simdjson.dir/simdjson.cpp.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/src/simdjson.cpp
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/src && /usr/bin/cmake -E cmake_link_script CMakeFiles/simdjson.dir/link.txt --verbose=1
+/usr/bin/clang++-11 -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libsimdjson.so.6 -o ../libsimdjson.so.6.0.0 CMakeFiles/simdjson.dir/simdjson.cpp.o  -pthread 
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/src && /usr/bin/cmake -E cmake_symlink_library ../libsimdjson.so.6.0.0 ../libsimdjson.so.6 ../libsimdjson.so
+[ 90%] Built target simdjson
+make -f benchmark/CMakeFiles/bench_ondemand.dir/build.make benchmark/CMakeFiles/bench_ondemand.dir/depend
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/jkeiser/simdjson_benchmark_results/simdjson /home/jkeiser/simdjson_benchmark_results/simdjson/benchmark /home/jkeiser/simdjson_benchmark_results/simdjson/build /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark/CMakeFiles/bench_ondemand.dir/DependInfo.cmake --color=
+Scanning dependencies of target bench_ondemand
+make -f benchmark/CMakeFiles/bench_ondemand.dir/build.make benchmark/CMakeFiles/bench_ondemand.dir/build
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark && /usr/bin/clang++-11  -DSIMDJSON_BENCHMARK_DATA_DIR=\"/home/jkeiser/simdjson_benchmark_results/simdjson/build/jsonexamples/\" -DSIMDJSON_MINEFIELD_TEST_DATA_DIR=\"/home/jkeiser/simdjson_benchmark_results/simdjson/jsonchecker/minefield/\" -DSIMDJSON_TEST_DATA_DIR=\"/home/jkeiser/simdjson_benchmark_results/simdjson/jsonchecker/\" -DSIMDJSON_THREADS_ENABLED=1 -DSIMDJSON_USING_LIBRARY=1 -I/home/jkeiser/simdjson_benchmark_results/simdjson/benchmark/. -I/home/jkeiser/simdjson_benchmark_results/simdjson/benchmark/linux -I/home/jkeiser/simdjson_benchmark_results/simdjson/include -I/home/jkeiser/simdjson_benchmark_results/simdjson/dependencies/.cache/google_benchmarks/src/../include  -O3 -DNDEBUG   -pthread -std=c++17 -o CMakeFiles/bench_ondemand.dir/bench_ondemand.cpp.o -c /home/jkeiser/simdjson_benchmark_results/simdjson/benchmark/bench_ondemand.cpp
+cd /home/jkeiser/simdjson_benchmark_results/simdjson/build/benchmark && /usr/bin/cmake -E cmake_link_script CMakeFiles/bench_ondemand.dir/link.txt --verbose=1
+/usr/bin/clang++-11  -O3 -DNDEBUG   CMakeFiles/bench_ondemand.dir/bench_ondemand.cpp.o  -o bench_ondemand  -Wl,-rpath,/home/jkeiser/simdjson_benchmark_results/simdjson/build ../libsimdjson.so.6.0.0 ../_deps/google_benchmarks/src/libbenchmark.a -pthread /usr/lib/x86_64-linux-gnu/librt.so 
+[100%] Built target bench_ondemand
+/usr/bin/cmake -E cmake_progress_start /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles 0
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/7/skylake-clang11.json --benchmark_out_format=json
+2021-01-25 01:18:23
+Running benchmark/bench_ondemand
+Run on (4 X 4000 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 8192 KiB (x1)
+Load Average: 0.48, 0.14, 0.23
+On Demand implementation: fallback
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                         Time             CPU   Iterations best_branch_miss best_bytes_per_sec best_cache_miss best_cache_ref best_cycles best_cycles_per_byte best_docs_per_sec best_frequency best_instructions best_instructions_per_byte best_instructions_per_cycle best_items_per_sec branch_miss      bytes bytes_per_second cache_miss  cache_ref     cycles cycles_per_byte docs_per_sec  frequency instructions instructions_per_byte instructions_per_cycle      items items_per_second
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PartialTweets<OnDemand>     1246910 ns      1246909 ns          561          33.036k           513.625M               0        59.566k    4.53897M              7.18743           813.322       3.69164G          10.9174M                    17.2877                     2.40527           81.3322k    33.8329k   631.515k       483.002M/s    1.90731   59.5218k   4.57073M         7.23772    801.983/s 3.66565G/s     10.9174M               17.2877                2.38855        100       80.1983k/s [best: throughput=  0.51 GB/s doc_throughput=   813 docs/s instructions=    10917436 cycles=     4538973 branch_miss=   33036 cache_miss=       0 cache_ref=     59566 items=       100 avg_time=   1238769 ns]
+PartialTweets<Dom>           281247 ns       281249 ns         2488           3.348k           2.32665G               1         93.11k    1002.08k              1.58678          3.68423k       3.69188G           2.9875M                    4.73068                      2.9813           368.423k    3.51447k   631.515k       2.09119G/s    2.71383   93.1307k   1007.37k         1.59517   3.55557k/s 3.58178G/s      2.9875M               4.73068                2.96563        100       355.557k/s [best: throughput=  2.33 GB/s doc_throughput=  3684 docs/s instructions=     2987495 cycles=     1002077 branch_miss=    3348 cache_miss=       1 cache_ref=     93110 items=       100 avg_time=    272979 ns]
+Creating a source file spanning 44921 KB 
+LargeRandom<Dom>           89991782 ns     89992334 ns            8         955.465k           511.575M        11.1093M       15.6243M    331.696M              7.21097           11.1215       3.68895G          1036.74M                    22.5384                     3.12557           11.1215M     957.27k   45.9988M       487.462M/s   11.1212M   15.6272M   331.913M         7.21569    11.1121/s 3.68824G/s     1036.74M               22.5384                3.12352      1000k       11.1121M/s [best: throughput=  0.51 GB/s doc_throughput=    11 docs/s instructions=  1036738075 cycles=   331695948 branch_miss=  955465 cache_miss=11109266 cache_ref=  15624296 items=   1000000 avg_time=  89976927 ns]
+LargeRandomSum<Dom>        92095492 ns     92096059 ns            8         952.356k           500.798M         10.514M       14.7748M    338.791M              7.36522           10.8872       3.68849G          1025.74M                    22.2992                     3.02764           10.8872M    958.427k   45.9988M       476.327M/s   10.5048M   14.7701M   339.655M           7.384    10.8582/s 3.68805G/s     1025.74M               22.2992                3.01994      1000k       10.8582M/s [best: throughput=  0.50 GB/s doc_throughput=    10 docs/s instructions=  1025738076 cycles=   338790922 branch_miss=  952356 cache_miss=10513975 cache_ref=  14774762 items=   1000000 avg_time=  92080832 ns]
+LargeRandom<OnDemand>     103699565 ns    103700199 ns            7         1.28201M           444.059M        5.71028M       8.12622M    382.126M              8.30731           9.65372       3.68894G          1.17998G                    25.6523                     3.08792           9.65372M    1.28257M   45.9988M       423.026M/s   5.75257M   8.12734M   382.491M         8.31524    9.64318/s 3.68843G/s     1.17998G               25.6523                3.08498      1000k       9.64318M/s [best: throughput=  0.44 GB/s doc_throughput=     9 docs/s instructions=  1179976257 cycles=   382126266 branch_miss= 1282005 cache_miss= 5710283 cache_ref=   8126222 items=   1000000 avg_time= 103686154 ns]
+LargeRandomSum<OnDemand>  104268837 ns    104269459 ns            7         1.32875M           441.974M        5.06877M       7.25504M    383.954M              8.34706           9.60838       3.68918G          1.17498G                    25.5436                      3.0602           9.60838M    1.32755M   45.9988M       420.716M/s   5.13726M   7.25597M   384.589M         8.36084    9.59054/s 3.68841G/s     1.17498G               25.5436                3.05515      1000k       9.59054M/s [best: throughput=  0.44 GB/s doc_throughput=     9 docs/s instructions=  1174976259 cycles=   383954400 branch_miss= 1328748 cache_miss= 5068767 cache_ref=   7255044 items=   1000000 avg_time= 104254834 ns]
+Creating a source file spanning 134087 KB 
+Kostya<Dom>                93952365 ns     93952949 ns            7         1019.75k           1.46296G        16.1557M       22.8932M    346.229M              2.52161           10.6548       3.68902G          984.675M                    7.17144                       2.844           5.58621M    1020.43k   137.305M       1.36106G/s   16.1707M   22.8122M   346.526M         2.52377    10.6436/s  3.6883G/s     984.675M               7.17144                2.84156   524.288k       5.58033M/s [best: throughput=  1.46 GB/s doc_throughput=    10 docs/s instructions=   984674863 cycles=   346229052 branch_miss= 1019753 cache_miss=16155651 cache_ref=  22893201 items=    524288 avg_time=  93937608 ns]
+KostyaSum<Dom>             94235249 ns     94235813 ns            7         1018.61k           1.45896G        15.3893M       21.8026M    347.185M              2.52857           10.6257       3.68908G          977.859M                     7.1218                     2.81653           5.57092M    1018.52k   137.305M       1.35697G/s     15.42M   21.7986M   347.537M         2.53114    10.6117/s 3.68796G/s     977.859M                7.1218                2.81368   524.288k       5.56357M/s [best: throughput=  1.46 GB/s doc_throughput=    10 docs/s instructions=   977859117 cycles=   347185208 branch_miss= 1018614 cache_miss=15389273 cache_ref=  21802592 items=    524288 avg_time=  94220255 ns]
+Kostya<OnDemand>          197253158 ns    197219891 ns            4         691.822k             696.7M         10.137M       14.1823M    727.141M              5.29581           5.07411       3.68959G          2.19309G                    15.9724                     3.01605           2.66029M    694.525k   137.305M       663.951M/s   10.2118M   14.1844M   727.553M         5.29881    5.07048/s 3.68904G/s     2.19309G               15.9724                3.01434   524.288k       2.65839M/s [best: throughput=  0.70 GB/s doc_throughput=     5 docs/s instructions=  2193094007 cycles=   727141175 branch_miss=  691822 cache_miss=10136989 cache_ref=  14182293 items=    524288 avg_time= 197237640 ns]
+KostyaSum<OnDemand>       199308562 ns    199275359 ns            4         728.007k           690.476M        9.97344M       13.8595M    733.575M              5.34267           5.02878       3.68898G          2.19519G                    15.9877                     2.99246           2.63653M    727.985k   137.305M       657.102M/s   9.96035M   13.7985M   733.985M         5.34565    5.01818/s 3.68327G/s     2.19519G               15.9877                2.99078   524.288k       2.63097M/s [best: throughput=  0.69 GB/s doc_throughput=     5 docs/s instructions=  2195190629 cycles=   733574640 branch_miss=  728007 cache_miss= 9973441 cache_ref=  13859484 items=    524288 avg_time= 199292316 ns]
+DistinctUserID<Dom>          276487 ns       276473 ns         2527           3.633k           2.36835G               0        93.968k    984.547k              1.55902          3.75026k       3.69231G           2.9272M                     4.6352                     2.97314            431.28k    3.83561k   631.515k       2.12731G/s  0.0811239   93.9241k   989.959k         1.56759   3.61698k/s 3.58067G/s      2.9272M                4.6352                2.95689        115       415.953k/s [best: throughput=  2.37 GB/s doc_throughput=  3750 docs/s instructions=     2927197 cycles=      984547 branch_miss=    3633 cache_miss=       0 cache_ref=     93968 items=       115 avg_time=    268330 ns]
+On Demand implementation: fallback
+DistinctUserID<OnDemand>    1219695 ns      1219468 ns          574          32.237k           526.239M               0        57.362k    4.43011M              7.01505           833.297        3.6916G          10.5944M                    16.7761                     2.39145           95.8291k    33.2816k   631.515k       493.871M/s    21.5906   57.5173k   4.46925M         7.07703     820.03/s 3.66492G/s     10.5944M               16.7761                 2.3705        115       94.3035k/s [best: throughput=  0.53 GB/s doc_throughput=   833 docs/s instructions=    10594374 cycles=     4430110 branch_miss=   32237 cache_miss=       0 cache_ref=     57362 items=       115 avg_time=   1211619 ns]
+FindTweet<Dom>               261755 ns       261752 ns         2672           3.168k           2.50397G               0        83.364k    931.219k              1.47458          3.96501k        3.6923G          2.83256M                    4.48534                     3.04178           3.96501k    3.31463k   631.515k       2.24695G/s   0.346931   83.4231k   935.927k         1.48204   3.82042k/s 3.57563G/s     2.83256M               4.48534                3.02647          1       3.82042k/s [best: throughput=  2.50 GB/s doc_throughput=  3965 docs/s instructions=     2832561 cycles=      931219 branch_miss=    3168 cache_miss=       0 cache_ref=     83364 items=         1 avg_time=    253648 ns]
+On Demand implementation: fallback
+FindTweet<OnDemand>         1168567 ns      1168576 ns          599          31.636k           549.051M               0        30.433k    4.24599M               6.7235           869.419       3.69155G          10.0923M                    15.9812                     2.37691            869.419    32.5643k   631.515k       515.379M/s    34.6728   30.2945k   4.28136M          6.7795    855.743/s 3.66374G/s     10.0923M               15.9812                2.35728          1        855.743/s [best: throughput=  0.55 GB/s doc_throughput=   869 docs/s instructions=    10092336 cycles=     4245993 branch_miss=   31636 cache_miss=       0 cache_ref=     30433 items=         1 avg_time=   1160438 ns]

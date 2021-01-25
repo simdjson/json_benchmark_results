@@ -1,0 +1,27 @@
+run_benchmark: v0.8.0~2 /home/jkeiser/simdjson_benchmark_results/v0.7.0/36/skylake-x-gcc10.2-native.json -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native
+git reset --hard v0.8.0~2
+HEAD is now at 2a714f4e Hide the std::pair inheritance in our result instances (#1396)
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The CXX compiler identification is GNU 10.2.0
+-- The C compiler identification is GNU 10.2.0
+-- Check for working CXX compiler: /usr/bin/g++-10
+-- Check for working CXX compiler: /usr/bin/g++-10 -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - failed
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working C compiler: /usr/bin/gcc-10
+CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+CMake Error at /usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:44 (try_compile):
+  Failed to configure test project build system.
+Call Stack (most recent call first):
+  CMakeLists.txt:3 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeError.log".
+make bench_ondemand
+make: getcwd: No such file or directory
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/36/skylake-x-gcc10.2-native.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 120: benchmark/bench_ondemand: No such file or directory

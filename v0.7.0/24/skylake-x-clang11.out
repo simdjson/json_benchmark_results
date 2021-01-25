@@ -1,0 +1,74 @@
+run_benchmark: v0.8.0~14 /home/jkeiser/simdjson_benchmark_results/v0.7.0/24/skylake-x-clang11.json -DCMAKE_BUILD_TYPE=Release
+git reset --hard v0.8.0~14
+HEAD is now at 7597cb35 Folding the line.
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The CXX compiler identification is Clang 11.0.0
+-- The C compiler identification is Clang 11.0.0
+-- Check for working CXX compiler: /usr/bin/clang++-11
+-- Check for working CXX compiler: /usr/bin/clang++-11 -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - failed
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working C compiler: /usr/bin/clang-11
+-- Check for working C compiler: /usr/bin/clang-11 -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- The simdjson repository appears to be standalone.
+-- By default, we attempt to build everything.
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - no
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Looking for fork
+-- Looking for fork - not found
+-- Looking for wait
+-- Looking for wait - not found
+-- Building a dynamic library.
+-- Library output directory: /home/jkeiser/simdjson_benchmark_results/simdjson/build
+-- Importing google_benchmarks (google/benchmark@8982e1e)
+-- Found Git: /usr/bin/git (found version "2.27.0") 
+-- git Version: v0.2.1-ce175642
+-- Version: 0.2.1
+-- Performing Test HAVE_CXX_FLAG_STD_CXX11
+-- Performing Test HAVE_CXX_FLAG_STD_CXX11 - Failed
+-- Performing Test HAVE_CXX_FLAG_STD_CXX0X
+-- Performing Test HAVE_CXX_FLAG_STD_CXX0X - Failed
+-- Performing Test HAVE_CXX_FLAG_WALL
+CMake Error at /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp/CMakeLists.txt:16 (add_executable):
+  Cannot find source file:
+
+    /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp/src.cxx
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp/CMakeLists.txt:16 (add_executable):
+  No SOURCES given to target: cmTC_88220
+
+
+CMake Error at /usr/share/cmake-3.16/Modules/CheckCXXSourceCompiles.cmake:110 (try_compile):
+  Failed to generate test project build system.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.16/Modules/CheckCXXCompilerFlag.cmake:50 (CHECK_CXX_SOURCE_COMPILES)
+  dependencies/.cache/google_benchmarks/cmake/AddCXXCompilerFlag.cmake:34 (check_cxx_compiler_flag)
+  dependencies/.cache/google_benchmarks/CMakeLists.txt:141 (add_cxx_compiler_flag)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeOutput.log".
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeError.log".
+make bench_ondemand
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/24/skylake-x-clang11.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 120: benchmark/bench_ondemand: No such file or directory

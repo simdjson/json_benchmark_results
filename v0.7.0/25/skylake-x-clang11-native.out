@@ -1,0 +1,32 @@
+run_benchmark: v0.8.0~13 /home/jkeiser/simdjson_benchmark_results/v0.7.0/25/skylake-x-clang11-native.json -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native
+git reset --hard v0.8.0~13
+HEAD is now at 09569116 Add element representation trivially_copyable property test (#1377)
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+-- The C compiler identification is GNU 10.2.0
+-- Check for working C compiler: /usr/bin/gcc-10
+CMake Error at /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp/CMakeLists.txt:15 (add_executable):
+  Cannot find source file:
+
+    /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp/testCCompiler.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at /home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeTmp/CMakeLists.txt:15 (add_executable):
+  No SOURCES given to target: cmTC_c52ae
+
+
+CMake Error at /usr/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:44 (try_compile):
+  Failed to generate test project build system.
+Call Stack (most recent call first):
+  CMakeLists.txt:3 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeOutput.log".
+See also "/home/jkeiser/simdjson_benchmark_results/simdjson/build/CMakeFiles/CMakeError.log".
+make bench_ondemand
+make: *** No rule to make target 'bench_ondemand'.  Stop.
+benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=/home/jkeiser/simdjson_benchmark_results/v0.7.0/25/skylake-x-clang11-native.json --benchmark_out_format=json
+./run_benchmark_official.sh: line 120: benchmark/bench_ondemand: No such file or directory
