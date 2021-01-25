@@ -65,7 +65,6 @@ class GoogleBenchmarkRun:
     @property
     def json(self):
         if not self.deserialized_json:
-            print(self.path)
             with open(self.path) as f:
                 self.deserialized_json = json.load(f)
         return self.deserialized_json

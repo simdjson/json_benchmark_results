@@ -34,6 +34,13 @@ JSON_IMPLEMENTATIONS = {
     "simdjson_ondemand_forward_only": "simdjson (On Demand forward-only)",
 }
 
+VARIANTS = {
+    "release": "Release build",
+    "native": "Release build with -march=native",
+    "fallback": "Release build with only the fallback kernel",
+    "westmere": "Release build with only the westmere and fallback kernels",
+    "debug": "Debug build",
+}
 
 #
 # Comment out benchmarks we don't want shown
