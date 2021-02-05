@@ -53,26 +53,26 @@ function bench_results() {
     esac
 
     suffix="-$variant"
-    cmake_flags="-DCMAKE_BUILD_TYPE=Release"            
     case $variant in
         production)
             suffix=""
-            cmake_flags="$cmake_flags -DSIMDJSON_PRODUCTION=ON"
+            cmake_flags="-DSIMDJSON_PRODUCTION=ON"
             ;;
         development)
             # This is a basic default release build with development aids
+            cmake_flags=""
             ;;
         debug)
             cmake_flags="-DCMAKE_BUILD_TYPE=Debug"
             ;;
         native)
-            cmake_flags="$cmake_flags -DCMAKE_CXX_FLAGS=-march=native -DSIMDJSON_PRODUCTION=ON"
+            cmake_flags="-DCMAKE_CXX_FLAGS=-march=native -DSIMDJSON_PRODUCTION=ON"
             ;;
         fallback)
-            cmake_flags="$cmake_flags -DSIMDJSON_IMPLEMENTATION=fallback -DSIMDJSON_PRODUCTION=ON"
+            cmake_flags="-DSIMDJSON_IMPLEMENTATION=fallback -DSIMDJSON_PRODUCTION=ON"
             ;;
         westmere)
-            cmake_flags="$cmake_flags -DSIMDJSON_EXCLUDE_IMPLEMENTATION=haswell -DSIMDJSON_PRODUCTION=ON"
+            cmake_flags="-DSIMDJSON_EXCLUDE_IMPLEMENTATION=haswell -DSIMDJSON_PRODUCTION=ON"
             ;;
         *)
             echo "Unknown variant $variant"
@@ -135,8 +135,8 @@ function run_benchmark() {
     cmake_flags="$cmake_flags -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
     echo cmake $cmake_flags ..
     cmake $cmake_flags ..
-    echo make --no-print-directory bench_ondemand
-    make --no-print-directory bench_ondemand
+    echo make -j --no-print-directory bench_ondemand
+    make -j --no-print-directory bench_ondemand
 
     # Run the benchmark
     echo benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json --benchmark_filter="$benchmarks"
