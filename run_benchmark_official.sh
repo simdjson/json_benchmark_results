@@ -55,20 +55,24 @@ function bench_results() {
     suffix="-$variant"
     cmake_flags="-DCMAKE_BUILD_TYPE=Release"            
     case $variant in
-        release)
+        production)
             suffix=""
+            cmake_flags="$cmake_flags -DSIMDJSON_PRODUCTION=ON"
+            ;;
+        development)
+            # This is a basic default release build with development aids
             ;;
         debug)
             cmake_flags="-DCMAKE_BUILD_TYPE=Debug"
             ;;
         native)
-            cmake_flags="$cmake_flags -DCMAKE_CXX_FLAGS=-march=native"
+            cmake_flags="$cmake_flags -DCMAKE_CXX_FLAGS=-march=native -DSIMDJSON_PRODUCTION=ON"
             ;;
         fallback)
-            cmake_flags="$cmake_flags -DSIMDJSON_IMPLEMENTATION=fallback"
+            cmake_flags="$cmake_flags -DSIMDJSON_IMPLEMENTATION=fallback -DSIMDJSON_PRODUCTION=ON"
             ;;
         westmere)
-            cmake_flags="$cmake_flags -DSIMDJSON_EXCLUDE_IMPLEMENTATION=haswell"
+            cmake_flags="$cmake_flags -DSIMDJSON_EXCLUDE_IMPLEMENTATION=haswell -DSIMDJSON_PRODUCTION=ON"
             ;;
         *)
             echo "Unknown variant $variant"
@@ -107,7 +111,7 @@ function bench_results() {
         echo $json_file already generated
     else
         echo run_benchmark $commit $json_file \"$cmake_flags\" \"$benchmarks\" \> $file_base.out 2\>\&1
-        run_benchmark $commit $json_file "$cmake_flags" "$benchmarks" # > $file_base.out 2>&1
+        run_benchmark $commit $json_file "$cmake_flags" "$benchmarks" > $file_base.out 2>&1
 
         echo
         echo $json_file
@@ -143,7 +147,7 @@ host=$1
 base_version=$2
 commits=${3:-"$base_version"}
 compilers=${4:-clang11}
-variants=${5:-release}
+variants=${5:-production}
 benchmarks=${6:-simdjson}
 
 cd $SCRIPT_DIR/simdjson
@@ -151,7 +155,7 @@ git remote update
 
 for compiler in $compilers; do
     for variant in $variants; do
-        # rm -rf $SCRIPT_DIR/simdjson/build
+        rm -rf $SCRIPT_DIR/simdjson/build
         for commit in $commits; do
             bench_results $host $compiler $base_version $commit $variant "$benchmarks"
         done
