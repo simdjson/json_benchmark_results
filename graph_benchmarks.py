@@ -66,7 +66,7 @@ runs = google_benchmark_json.list_runs(args.root)
 total_benchmarks = len(runs)
 runs = [
     run for run in runs
-    if args.force or not os.path.exists(f"{os.path.splitext(run.path)[0]}.png")
+    if args.force or not os.path.exists(f"{os.path.splitext(run.path)[0]}.png") or os.path.getmtime(f"{os.path.splitext(run.path)[0]}.json") > os.path.getmtime(f"{os.path.splitext(run.path)[0]}.png")
 ]
 print(f"Repository contains {len(runs)} benchmarks that need graphs out of a total of {total_benchmarks}.")
 if len(runs) == 0:
