@@ -160,7 +160,7 @@ class GoogleBenchmarkResult:
         }
 
     def __str__(self):
-        return f"{self.implementation()} - {self.throughput}"
+        return f"{self.implementation} - {self.throughput}"
 
 def list_runs(path):
     results = [
