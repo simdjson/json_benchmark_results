@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 SIMDJSON_DIR=$SCRIPT_DIR/simdjson
 if [ ! -d $SIMDJSON_DIR ]; then
@@ -12,15 +13,16 @@ function bench_results() {
     base_version=$3
     commit=$4
     variant=$5
+    benchmarks=$6
 
     case $compiler in
         clang6)
             export CXX=clang++-6.0 CC=clang-6.0
             ;;
-        clang9)
+        clang7)
             export CXX=clang++-7 CC=clang-7
             ;;
-        clang9)
+        clang8)
             export CXX=clang++-8 CC=clang-8
             ;;
         clang9)
@@ -104,8 +106,8 @@ function bench_results() {
     if [ -f $json_file ] && [ "$FORCE" = "" ]; then
         echo $json_file already generated
     else
-        echo run_benchmark $commit $json_file "$cmake_flags" \> $file_base.out 2\>\&1
-        run_benchmark $commit $json_file "$cmake_flags" > $file_base.out 2>&1
+        echo run_benchmark $commit $json_file \"$cmake_flags\" \"$benchmarks\" \> $file_base.out 2\>\&1
+        run_benchmark $commit $json_file "$cmake_flags" "$benchmarks" # > $file_base.out 2>&1
 
         echo
         echo $json_file
@@ -117,8 +119,9 @@ function run_benchmark() {
     commit=$1
     json_file=$2
     cmake_flags=$3
+    benchmarks=$4
 
-    echo "run_benchmark: $commit $json_file $cmake_flags"
+    echo "run_benchmark: $commit $json_file \"$cmake_flags\" \"$benchmarks\""
 
     # Build
     echo git reset --hard $commit
@@ -128,12 +131,12 @@ function run_benchmark() {
     cmake_flags="$cmake_flags -DCMAKE_RULE_MESSAGES:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
     echo cmake $cmake_flags ..
     cmake $cmake_flags ..
-    echo --no-print-directory make bench_ondemand
+    echo make --no-print-directory bench_ondemand
     make --no-print-directory bench_ondemand
 
     # Run the benchmark
-    echo benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json
-    benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json
+    echo benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json --benchmark_filter="$benchmarks"
+    benchmark/bench_ondemand --benchmark_counters_tabular=true --benchmark_out=$json_file --benchmark_out_format=json --benchmark_filter="$benchmarks"
 }
 
 host=$1
@@ -141,15 +144,16 @@ base_version=$2
 commits=${3:-"$base_version"}
 compilers=${4:-clang11}
 variants=${5:-release}
+benchmarks=${6:-simdjson}
 
 cd $SCRIPT_DIR/simdjson
 git remote update
 
 for compiler in $compilers; do
     for variant in $variants; do
-        rm -rf $SCRIPT_DIR/simdjson/build
+        # rm -rf $SCRIPT_DIR/simdjson/build
         for commit in $commits; do
-            bench_results $host $compiler $base_version $commit $variant
+            bench_results $host $compiler $base_version $commit $variant "$benchmarks"
         done
     done
 done 
