@@ -54,25 +54,24 @@ function bench_results() {
 
     suffix="-$variant"
     case $variant in
-        production)
+        release)
             suffix=""
-            cmake_flags="-DSIMDJSON_PRODUCTION=ON"
             ;;
         development)
             # This is a basic default release build with development aids
-            cmake_flags=""
+            cmake_flags="-DSIMDJSON_DEVELOPMENT_CHECKS=1"
             ;;
         debug)
             cmake_flags="-DCMAKE_BUILD_TYPE=Debug"
             ;;
         native)
-            cmake_flags="-DCMAKE_CXX_FLAGS=-march=native -DSIMDJSON_PRODUCTION=ON"
+            cmake_flags="-DCMAKE_CXX_FLAGS=-march=native"
             ;;
         fallback)
-            cmake_flags="-DSIMDJSON_IMPLEMENTATION=fallback -DSIMDJSON_PRODUCTION=ON"
+            cmake_flags="-DSIMDJSON_IMPLEMENTATION=fallback"
             ;;
         westmere)
-            cmake_flags="-DSIMDJSON_EXCLUDE_IMPLEMENTATION=haswell -DSIMDJSON_PRODUCTION=ON"
+            cmake_flags="-DSIMDJSON_EXCLUDE_IMPLEMENTATION=haswell"
             ;;
         *)
             echo "Unknown variant $variant"
