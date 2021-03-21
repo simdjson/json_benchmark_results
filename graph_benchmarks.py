@@ -66,7 +66,7 @@ runs = google_benchmark_json.list_runs(args.root)
 total_benchmarks = len(runs)
 runs = [
     run for run in runs
-    if args.force or not os.path.exists(f"{os.path.splitext(run.path)[0]}.png")
+    if args.force or not os.path.exists(f"{os.path.splitext(run.path)[0]}.png") or os.path.getmtime(f"{os.path.splitext(run.path)[0]}.json") > os.path.getmtime(f"{os.path.splitext(run.path)[0]}.png")
 ]
 print(f"Repository contains {len(runs)} benchmarks that need graphs out of a total of {total_benchmarks}.")
 if len(runs) == 0:
@@ -77,7 +77,7 @@ runs = [
     run.dataframe() for run in runs
     if match_any(args.compilers, run.compiler_plus_version)
     if match_any(args.variants, run.variant)
-    if match_any(args.versions, run.base_version if run.commits_past_version == 0 else f"{run.base_version}+{run.commits_past_version}")
+    if match_any(args.versions, run.version_path)
 ]
 if len(runs) == 0:
     print("All matching benchmarks already have graphs!")
@@ -85,8 +85,8 @@ if len(runs) == 0:
 benchmarks = pd.concat(runs)
 benchmarks = benchmarks[benchmarks['benchmark_name'].apply(lambda benchmark_name: match_any(args.benchmarks, benchmark_name))]
 benchmarks = benchmarks[benchmarks['json_implementation'].apply(lambda json_implementation: match_any(args.implementations, json_implementation))]
-print(f"Generating graphs for {benchmarks.count().count()} matching benchmarks ...")
-for path,fig in google_benchmark_graph.graph_grouped_benchmarks(benchmarks):
+print(f"Generating graphs for {benchmarks.count()} matching benchmarks ...")
+for path,fig in google_benchmark_graph.graph_grouped_benchmarks(benchmarks, "best_instructions", "Instructions", 1):
     png_path = os.path.splitext(path)[0]+'.png'
     print(png_path)
     fig.write_image(png_path)

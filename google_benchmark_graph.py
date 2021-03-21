@@ -102,7 +102,7 @@ def create_name(row):
     result = f"{row['host']} {row['compiler_plus_version']}"
     result += (f" - {row['variant']}" if row['variant'] else "")
     result += f" ("
-    result += f"simdjson {row['base_version']}"
+    result += f"simdjson {row['dev_commit']} {row['base_version']}"
     result += (f"+{row['commits_past_version']}" if row['commits_past_version'] > 0 else "")
     result += f")"
     return result

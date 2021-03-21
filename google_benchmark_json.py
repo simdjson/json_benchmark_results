@@ -23,11 +23,6 @@ OLD_IMPLEMENTATIONS = {
 class GoogleBenchmarkRun:
     @classmethod
     def from_path(cls, root, folder, file):
-        # Split up the path (relative to root) and extract the version
-        path_parts = [x for x in os.path.split(os.path.relpath(folder, root))]
-        if path_parts[0] == '.' or path_parts[0] == '': path_parts.pop(0)
-        assert len(path_parts) <= 2
-
         #
         # Path can be either:
         # <base_version>/blah.json
@@ -37,26 +32,57 @@ class GoogleBenchmarkRun:
         # <host>-<compiler><version>[-<variant>].json
         #
         match = re.fullmatch(r"(.+)-(clang|gcc)([^-]+)(-(.+))?.json", file)
+        if match == None:
+            return None
 
         return GoogleBenchmarkRun(
+            root = root,
             path = os.path.join(folder, file),
-            base_version = path_parts[0],
-            commits_past_version = int(path_parts[1]) if len(path_parts) == 2 else 0,
             host = match.group(1),
             compiler = match.group(2),
             compiler_version = match.group(3),
             variant = match.group(5)
         )
     
-    def __init__(self, path, base_version, commits_past_version, host, compiler, compiler_version, variant):
+    def __init__(self, root, path, host, compiler, compiler_version, variant):
+        self.root = root
         self.path = path
-        self.base_version = base_version
-        self.commits_past_version = commits_past_version
         self.host = host
         self.compiler = compiler
         self.compiler_version = compiler_version
         self.variant = variant
         self.deserialized_json = None
+    
+    @property
+    def version_path(self):
+        return os.path.dirname(os.path.relpath(self.path, self.root))
+
+    @property
+    def version_parts(self):
+        version_parts = [x for x in os.path.split(self.version_path)]
+        if version_parts[0] == '.' or version_parts[0] == '': version_parts.pop(0)
+        if len(version_parts) == 1:
+            version_parts = [ version_parts[0], '0' ]
+        if len(version_parts) == 2:
+            if len(version_parts[1]) == len('3a1c065104e5efd9afc30ca051984731929bdfcd'):
+                version_parts = [ version_parts[0], '0', version_parts[1] ]
+            else:
+                version_parts = [ version_parts[0], version_parts[1], None ]
+        
+        assert len(version_parts) <= 3
+        return version_parts
+
+    @property
+    def base_version(self):
+        return self.version_parts[0]
+
+    @property    
+    def commits_past_version(self):
+        return int(self.version_parts[1])
+
+    @property 
+    def dev_commit(self):
+        return self.version_parts[2]
 
     @property
     def compiler_plus_version(self):
@@ -76,6 +102,7 @@ class GoogleBenchmarkRun:
             "path": self.path,
             "base_version": self.base_version,
             "commits_past_version": self.commits_past_version,
+            "dev_commit": self.dev_commit,
             "host": self.host,
             "compiler": self.compiler,
             "compiler_version": self.compiler_version,
@@ -133,12 +160,13 @@ class GoogleBenchmarkResult:
         }
 
     def __str__(self):
-        return f"{self.implementation()} - {self.throughput}"
+        return f"{self.implementation} - {self.throughput}"
 
 def list_runs(path):
-    return [
+    results = [
         GoogleBenchmarkRun.from_path(path, folder, file)
         for folder, subfolders, files in os.walk(path)
         for file in files
         if os.path.splitext(file)[1] == ".json"
     ]
+    return [result for result in results if result != None]
