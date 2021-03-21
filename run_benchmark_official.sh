@@ -83,6 +83,7 @@ function bench_results() {
     # Create base directory file will live in
     #
     base_dir=$SCRIPT_DIR/$base_version
+    cd $SCRIPT_DIR/simdjson
 
     # Error if commit is not a child of the base version
     if ! git merge-base --is-ancestor $base_version $commit; then
@@ -90,7 +91,6 @@ function bench_results() {
         exit 1;
     fi
 
-    cd $SCRIPT_DIR/simdjson
     if git merge-base --is-ancestor $commit master; then
         # If it's *past* the base version, use the number of commits past the base version for the directory.
         commits_past_version=$(git rev-list --count --first-parent $base_version...$commit)
