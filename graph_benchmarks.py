@@ -85,8 +85,8 @@ if len(runs) == 0:
 benchmarks = pd.concat(runs)
 benchmarks = benchmarks[benchmarks['benchmark_name'].apply(lambda benchmark_name: match_any(args.benchmarks, benchmark_name))]
 benchmarks = benchmarks[benchmarks['json_implementation'].apply(lambda json_implementation: match_any(args.implementations, json_implementation))]
-print(f"Generating graphs for {benchmarks.count().count()} matching benchmarks ...")
-for path,fig in google_benchmark_graph.graph_grouped_benchmarks(benchmarks):
+print(f"Generating graphs for {benchmarks.count()} matching benchmarks ...")
+for path,fig in google_benchmark_graph.graph_grouped_benchmarks(benchmarks, "best_instructions", "Instructions", 1):
     png_path = os.path.splitext(path)[0]+'.png'
     print(png_path)
     fig.write_image(png_path)

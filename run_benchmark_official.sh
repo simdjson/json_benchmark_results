@@ -84,18 +84,25 @@ function bench_results() {
     #
     base_dir=$SCRIPT_DIR/$base_version
 
-    # Figure out # of commits past version
-    cd $SCRIPT_DIR/simdjson
-    fork_commit=$(git merge-base $base_version $commit)
-    commits_past_version=$(git rev-list --count --first-parent $base_version...$fork_commit)
-    if [ "$commits_past_version" -ne "0" ]; then
-        base_dir="$base_dir/$commits_past_version"
+    # Error if commit is not a child of the base version
+    if ! git merge-base --is-ancestor $base_version $commit; then
+        echo "Commit $commit is not derived from $base_version!"
+        exit 1;
     fi
 
-    # Figure out if commit is unmerged
-    actual_commit=$(git rev-list -n 1 $commit)
-    if [ "$fork_commit" != "$actual_commit" ]; then
-        base_dir="$base_dir/$actual_commit"
+    cd $SCRIPT_DIR/simdjson
+    if git merge-base --is-ancestor $commit master; then
+        # If it's *past* the base version, use the number of commits past the base version for the directory.
+        commits_past_version=$(git rev-list --count --first-parent $base_version...$commit)
+        if [ "$commits_past_version" -ne "0" ]; then
+            echo "Commit $commit is $commits_past_version commits past $base_version."
+            base_dir="$base_dir/$commits_past_version"
+        fi
+    else
+        # If it's not on master, it's a branch ... use the commit id.
+        commit_sha=$(git rev-list -n 1 $commit)
+        echo "$commit ($commit_sha) is not on master. Setting base_dir to commit id $commit_sha..."
+        base_dir="$base_dir/$commit_sha"
     fi
 
     mkdir -p $base_dir
